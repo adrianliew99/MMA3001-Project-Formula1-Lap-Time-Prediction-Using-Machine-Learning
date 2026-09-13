@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mma3001-f1"
+version = "0.1.0"
+description = "Reproducible F1 data feasibility and next-lap baseline workspace"
+requires-python = ">=3.11"
+dependencies = ["fastf1>=3.6,<4", "pandas>=2.2,<3", "numpy>=2,<3", "matplotlib>=3.9,<4", "scikit-learn>=1.6,<2", "jupyterlab>=4,<5", "ipykernel>=6", "nbformat>=5", "nbclient>=0.10", "pytest>=8", "pdoc>=15"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+

@@ -1,0 +1,283 @@
+{
+  "rows": 1129,
+  "drivers": 20,
+  "eligible_rows": 988,
+  "source_columns": [
+    "Time",
+    "Driver",
+    "DriverNumber",
+    "LapTime",
+    "LapNumber",
+    "Stint",
+    "PitOutTime",
+    "PitInTime",
+    "Sector1Time",
+    "Sector2Time",
+    "Sector3Time",
+    "Sector1SessionTime",
+    "Sector2SessionTime",
+    "Sector3SessionTime",
+    "SpeedI1",
+    "SpeedI2",
+    "SpeedFL",
+    "SpeedST",
+    "IsPersonalBest",
+    "Compound",
+    "TyreLife",
+    "FreshTyre",
+    "Team",
+    "LapStartTime",
+    "LapStartDate",
+    "TrackStatus",
+    "Position",
+    "Deleted",
+    "DeletedReason",
+    "FastF1Generated",
+    "IsAccurate"
+  ],
+  "unavailable_quality_fields": [],
+  "missing": {
+    "Time": 0,
+    "Driver": 0,
+    "DriverNumber": 0,
+    "LapTime": 2,
+    "LapNumber": 0,
+    "Stint": 0,
+    "PitOutTime": 1086,
+    "PitInTime": 1086,
+    "Sector1Time": 21,
+    "Sector2Time": 0,
+    "Sector3Time": 0,
+    "Sector1SessionTime": 22,
+    "Sector2SessionTime": 0,
+    "Sector3SessionTime": 0,
+    "SpeedI1": 0,
+    "SpeedI2": 0,
+    "SpeedFL": 43,
+    "SpeedST": 0,
+    "IsPersonalBest": 0,
+    "Compound": 0,
+    "TyreLife": 0,
+    "FreshTyre": 0,
+    "Team": 0,
+    "LapStartTime": 0,
+    "LapStartDate": 1129,
+    "TrackStatus": 0,
+    "Position": 0,
+    "Deleted": 0,
+    "DeletedReason": 0,
+    "FastF1Generated": 0,
+    "IsAccurate": 0,
+    "SourceRow": 0,
+    "SessionID": 0,
+    "LapTimeSeconds": 2,
+    "Sector1TimeSeconds": 21,
+    "Sector2TimeSeconds": 0,
+    "Sector3TimeSeconds": 0,
+    "FlagDuplicate": 0,
+    "FlagInvalidID": 0,
+    "FlagInvalidTime": 0,
+    "FlagPit": 0,
+    "FlagInterrupted": 0,
+    "FlagInaccurate": 0,
+    "FlagDeleted": 0,
+    "FlagGenerated": 0,
+    "FlagUnknownQuality": 0,
+    "FlagUnsupportedTyre": 0,
+    "Eligible": 0,
+    "Year": 0,
+    "Event": 0,
+    "Session": 0,
+    "EventDate": 0
+  },
+  "nonpositive_durations": {
+    "LapTimeSeconds": 0,
+    "Sector1TimeSeconds": 0,
+    "Sector2TimeSeconds": 0,
+    "Sector3TimeSeconds": 0
+  },
+  "lap_coverage": {
+    "ALB": {
+      "min": 1.0,
+      "max": 56.0,
+      "count": 56,
+      "nunique": 56
+    },
+    "ALO": {
+      "min": 1.0,
+      "max": 57.0,
+      "count": 57,
+      "nunique": 57
+    },
+    "BOT": {
+      "min": 1.0,
+      "max": 56.0,
+      "count": 56,
+      "nunique": 56
+    },
+    "GAS": {
+      "min": 1.0,
+      "max": 56.0,
+      "count": 56,
+      "nunique": 56
+    },
+    "HAM": {
+      "min": 1.0,
+      "max": 57.0,
+      "count": 57,
+      "nunique": 57
+    },
+    "HUL": {
+      "min": 1.0,
+      "max": 56.0,
+      "count": 56,
+      "nunique": 56
+    },
+    "LEC": {
+      "min": 1.0,
+      "max": 57.0,
+      "count": 57,
+      "nunique": 57
+    },
+    "MAG": {
+      "min": 1.0,
+      "max": 56.0,
+      "count": 56,
+      "nunique": 56
+    },
+    "NOR": {
+      "min": 1.0,
+      "max": 57.0,
+      "count": 57,
+      "nunique": 57
+    },
+    "OCO": {
+      "min": 1.0,
+      "max": 56.0,
+      "count": 56,
+      "nunique": 56
+    },
+    "PER": {
+      "min": 1.0,
+      "max": 57.0,
+      "count": 57,
+      "nunique": 57
+    },
+    "PIA": {
+      "min": 1.0,
+      "max": 57.0,
+      "count": 57,
+      "nunique": 57
+    },
+    "RIC": {
+      "min": 1.0,
+      "max": 56.0,
+      "count": 56,
+      "nunique": 56
+    },
+    "RUS": {
+      "min": 1.0,
+      "max": 57.0,
+      "count": 57,
+      "nunique": 57
+    },
+    "SAI": {
+      "min": 1.0,
+      "max": 57.0,
+      "count": 57,
+      "nunique": 57
+    },
+    "SAR": {
+      "min": 1.0,
+      "max": 55.0,
+      "count": 55,
+      "nunique": 55
+    },
+    "STR": {
+      "min": 1.0,
+      "max": 57.0,
+      "count": 57,
+      "nunique": 57
+    },
+    "TSU": {
+      "min": 1.0,
+      "max": 56.0,
+      "count": 56,
+      "nunique": 56
+    },
+    "VER": {
+      "min": 1.0,
+      "max": 57.0,
+      "count": 57,
+      "nunique": 57
+    },
+    "ZHO": {
+      "min": 1.0,
+      "max": 56.0,
+      "count": 56,
+      "nunique": 56
+    }
+  },
+  "exclusion_waterfall": [
+    {
+      "rule": "FlagDuplicate",
+      "flagged": 0,
+      "newly_excluded": 0,
+      "remaining": 1129
+    },
+    {
+      "rule": "FlagInvalidID",
+      "flagged": 0,
+      "newly_excluded": 0,
+      "remaining": 1129
+    },
+    {
+      "rule": "FlagInvalidTime",
+      "flagged": 2,
+      "newly_excluded": 2,
+      "remaining": 1127
+    },
+    {
+      "rule": "FlagPit",
+      "flagged": 86,
+      "newly_excluded": 84,
+      "remaining": 1043
+    },
+    {
+      "rule": "FlagInterrupted",
+      "flagged": 42,
+      "newly_excluded": 37,
+      "remaining": 1006
+    },
+    {
+      "rule": "FlagInaccurate",
+      "flagged": 105,
+      "newly_excluded": 0,
+      "remaining": 1006
+    },
+    {
+      "rule": "FlagDeleted",
+      "flagged": 20,
+      "newly_excluded": 18,
+      "remaining": 988
+    },
+    {
+      "rule": "FlagGenerated",
+      "flagged": 0,
+      "newly_excluded": 0,
+      "remaining": 988
+    },
+    {
+      "rule": "FlagUnknownQuality",
+      "flagged": 0,
+      "newly_excluded": 0,
+      "remaining": 988
+    },
+    {
+      "rule": "FlagUnsupportedTyre",
+      "flagged": 0,
+      "newly_excluded": 0,
+      "remaining": 988
+    }
+  ]
+}

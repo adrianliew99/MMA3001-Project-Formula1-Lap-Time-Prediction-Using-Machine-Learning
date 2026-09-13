@@ -1,0 +1,13 @@
+.venv*/
+.uv-cache/
+cache/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+data/raw/*
+data/processed/*
+results/models/
+Fast-F1/
+docs/html/
+
