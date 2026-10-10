@@ -11,3 +11,9 @@ results/models/
 Fast-F1/
 docs/html/
 
+# Generated FastF1 caches and Python bytecode
+**/fastf1_cache/
+*.ff1pkl
+fastf1_http_cache.sqlite
+.venv/
+*.py[cod]
