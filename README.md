@@ -1,46 +1,56 @@
-# MMA3001 Formula 1 next-lap prediction notebook
+# MMA3001-Project-Formula1-Lap-Time-Prediction-Using-a-1-Dimensional-CNN
+Can the lap time and sector trend, recent race history, tyre age and strategy predict the next lap time, how accurate it can be estimated
 
-This is a standalone, documented Jupyter notebook for chronological model comparison using **real FastF1 next-lap ML CSV exports**. It does not overwrite the user's existing repository or scripts.
 
-## Getting started on Windows 11
+## About this project
+This repositories records the development of individual project for Monash University School of Engineering study unit MMA3001: Numerical Methods and Machine Learning. It will bring together the project explanation, data preparation and process, computer code, evaluation, further improvement and discussion & findings. 
 
-1. Copy `MMA3001_F1_Next_Lap_Prediction.ipynb` into the MMA3001 repository (for example `notebooks/`).
-2. In the project's activated Python 3.12 virtual environment, run `python -m pip install -r requirements.txt`.
-3. Run `python -m ipykernel install --user --name mma3001 --display-name "MMA3001 (Python 3.12)"`, if your environment is not listed in VS Code.
-4. Open the notebook and change `DATA_DIR` to a directory containing one or more `*next_lap_ml*.csv` files.
-5. First import a 2024 Bahrain export to inspect the schema and QA. For cross-season regression, obtain at least train and validation seasons (defaults: 2022–23 train, 2024 validation, 2025 test).
-6. Run cells sequentially. Leave `RUN_FINAL_TEST=False` during development. Turn it on only once after selecting your approach using validation.
+## Project Description
+Formula 1 lap times depend on vehicle speed, throttle and braking behaviour, tyre conditions, track temperature and race circumstances. This project investigates whether machine-learning regression models can predict a driver's next lap time using information available at the end of the previous completed lap.
+The primary deliverable is a reproducible comparison of simple and advanced prediction methods. A potential second stage will use lap-pace and tyre-age estimates to compare hypothetical pit-stop strategies. Race winner and DNF probability models are possible future extensions, not current outputs.
 
-**Important:** A single 2024 export is not sufficient for the default chronological train/validation split. Do not use random-lap holdouts as a workaround. Change the year configuration only to other truly distinct chronological seasons for which you have data.
+### Engineering Problem
+Can historical Formula 1 lap timing, telemetry and racing conditions improve next-lap time predictions over simple baselines, and can these predictions inform tyre-strategy analysis?
 
-## Notebook capabilities
+### Input and Output
+*Input*: Recent race finished position, recent lap time, tyre age and selection
+*Output*: Next lap time prediction
+*Validation*: Comparison with labelled assessment and how other factor influence
 
-- Optional explicitly enabled one-event download via FastF1; existing exporters are preferred.
-- Export inventory, validation and exclusion reasons for malformed pairs.
-- Persistence, Linear Regression, Decision Tree and Random Forest regressors.
-- Preprocessing isolated by training, chronological split, validation hyperparameter selection.
-- Comparison of context-only versus context plus previous-lap telemetry (same rows).
-- Prediction CSVs, model pipeline, split manifest, quality report, metrics and plots under `results/`.
-- Locked final holdout and documentation for scientific interpretation.
 
-## CUDA
+## Project Phase
 
-Not required: the four classical scikit-learn algorithms operate on CPU, even when an RTX 4060 is present. The code checks for CUDA through PyTorch only if already installed; installing PyTorch does not accelerate these scikit-learn models.
 
-## Known limitations
+## Version
+Current version: v1.0
 
-- The upstream scripts were not provided, so lap cleanliness, stint transitions and weather join timestamps cannot be independently verified from CSV alone. Audit them in original FastF1 records.
-- Historical target-lap clean filtering means this is conditional retrospective evaluation, **not** a prediction of all future race laps.
-- The optional fallback acquisition only emits basic fields (no car telemetry or timestamp-verified weather).
-- The notebook does not include tyre-stop optimization or live inference, which the planning brief lists as later scope.
-- No real event data was available in the provided attachments, so model performance cannot be asserted until you execute using verified historic CSVs.
+## Data Source
+Primary Source is obtained through [FastF1]https://github.com/theOehrly/Fast-F1, an open-source Python providing access to previous Formula 1 racing data
 
-## Tests performed in preparation
+## Dataset Description
+Data exported: All Drivers at all circuits for Year 2022, 2023, 2024 & 2025\
+The retrieved data is exported into .csv dataset format\
+**Dataset type:** Historical Formula 1 lap timing and session data
 
-- `nbformat.validate` and `ast.parse` on every executable cell: passed.
-- Full offline execution of the notebook against a **synthetic fixture** spanning 2022–25: passed. These toy observations are **not historical F1 results** and are not included in this handover.
-- Actual FastF1 API downloads and real-race benchmark results: **not performed**.
+### Extracted Features
 
-## Submission items remaining
+| Category | Features | Description |
+|---|---|---|
+| Driver & Team | `Driver`, `DriverNumber`, `Team`, `Position` | Driver identification, team affiliation, and recorded position |
+| Lap Information | `LapNumber`, `LapTime`, `LapTimeSeconds`, `Time`, `LapStartTime`, `LapStartDate` | Lap sequence, lap duration, and timing information |
+| Sector Timing | `Sector1Time`, `Sector2Time`, `Sector3Time`, `Sector1SessionTime`, `Sector2SessionTime`, `Sector3SessionTime` | Individual sector durations and corresponding session timestamps |
+| Speed Measurements | `SpeedI1`, `SpeedI2`, `SpeedFL`, `SpeedST` | Recorded speeds at intermediate points, finish line, and speed trap (km/h) |
+| Tyre & Stint | `Compound`, `TyreLife`, `FreshTyre`, `Stint` | Tyre compound, tyre age, tyre condition, and stint number |
+| Pit Stop Information | `PitInTime`, `PitOutTime` | Session timestamps associated with pit entry and exit |
+| Race & Track Conditions | `TrackStatus`, `IsPersonalBest` | Track status codes and personal-best lap indicator |
+| Data Quality | `IsAccurate`, `Deleted`, `DeletedReason`, `FastF1Generated` | Flags describing lap accuracy, deletion status, and generated records |
+| Session Metadata | `SessionID`, `Year`, `Event` | Session identification, season, and Grand Prix event |
 
-Provide repository README, HTML documentation, dedicated pytest test suite, licences subject to user preferences and FastF1 terms, approved engineering framing, comprehensive report and AI-use reflection. See uploaded official MMA3001 project brief for the marking rubric.
+**References:**
+- [FastF1 GitHub Repository](https://github.com/theOehrly/Fast-F1)
+- [FastF1 Official Documentation](https://docs.fastf1.dev/)
+
+FastF1 is used to retrieve racing data. The original timing data is not owned by this project. Any additional preprocessing, feature engineering, and machine learning implementation will be documented separately.
+
+### AI acknowledgement
+LLMs model (Chatgpt 6 Astra, Cursor Pro, Google Gemini3 Plus) was used in the project development, suggesting evaluation 

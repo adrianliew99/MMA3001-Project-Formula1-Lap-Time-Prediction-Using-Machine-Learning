@@ -1,0 +1,16 @@
+{
+  "status": "failed",
+  "request": {
+    "year": 2024,
+    "event": "Bahrain",
+    "session": "R",
+    "drivers": [
+      "HAM",
+      "VER"
+    ]
+  },
+  "started_utc": "2026-10-12T11:05:52.156268+00:00",
+  "source_mode": "provider_with_cache",
+  "failed_utc": "2026-10-12T11:06:31.234838+00:00",
+  "error": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Admin\\\\Documents\\\\mmaproject\\\\dataset\\\\fastf1_export_dataset.py'"
+}

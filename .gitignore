@@ -1,0 +1,14 @@
+# Local Python environments and build artifacts
+.venv*/
+.uv-cache/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Regenerable FastF1 download caches
+cache/
+fastf1_cache/
+*.ff1pkl
+fastf1_http_cache.sqlite*

@@ -1,0 +1,37 @@
+{
+  "status": "incomplete",
+  "started_utc": "2026-10-12T12:16:24.847865+00:00",
+  "offline": false,
+  "max_sessions": 1,
+  "drivers": [
+    "HAM",
+    "VER"
+  ],
+  "selection": [
+    {
+      "year": 2024,
+      "round": 1,
+      "event": "Bahrain Grand Prix"
+    }
+  ],
+  "completed_utc": "2026-10-12T12:16:24.867800+00:00",
+  "accepted_sessions": 0,
+  "results": [
+    {
+      "Year": 2024,
+      "RoundNumber": 1,
+      "Event": "Bahrain Grand Prix",
+      "SessionID": "2024-01-R",
+      "Status": "incomplete",
+      "MLRows": 0,
+      "Reason": "manifest status is not complete; use a fresh output or --overwrite",
+      "Manifest": "races/2024_bahrain_grand_prix_manifest.json"
+    }
+  ],
+  "merged_rows": {
+    "all_laps": 0,
+    "weather": 0,
+    "race_results": 0,
+    "next_lap_ml": 0
+  }
+}

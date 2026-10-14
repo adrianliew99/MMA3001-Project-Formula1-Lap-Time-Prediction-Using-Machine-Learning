@@ -1,0 +1,13 @@
+# Tested on Python 3.12, scikit-learn 1.8.0
+numpy>=1.26,<3
+pandas>=2.2,<3
+scikit-learn>=1.6,<1.9
+matplotlib>=3.8,<4
+joblib>=1.3,<2
+jupyterlab>=4,<5
+ipykernel>=6,<8
+nbformat>=5,<6
+# Optional; only for opt-in single-race download:
+fastf1>=3.7,<4
+# Optional offline notebook integration testing:
+nbclient>=0.10,<1

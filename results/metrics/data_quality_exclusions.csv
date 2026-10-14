@@ -1,0 +1,11 @@
+reason,excluded_rows
+duplicate_key,0
+missing_identifiers,0
+non_consecutive,0
+invalid_time,0
+invalid_stint,0
+invalid_tyre_age,0
+invalid_speed,0
+invalid_percentages,0
+invalid_temperature,0
+wrong_delta_identity,0

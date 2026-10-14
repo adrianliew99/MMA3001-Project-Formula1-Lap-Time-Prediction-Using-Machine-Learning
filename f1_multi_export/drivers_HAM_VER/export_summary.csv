@@ -1,0 +1,2 @@
+Year,RoundNumber,Event,SessionID,Status,MLRows,Reason,Manifest
+2024,1,Bahrain Grand Prix,2024-01-R,incomplete,0,manifest status is not complete; use a fresh output or --overwrite,races/2024_bahrain_grand_prix_manifest.json
