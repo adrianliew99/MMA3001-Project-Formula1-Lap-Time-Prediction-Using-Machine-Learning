@@ -1,5 +1,5 @@
 # MMA3001-Project-Formula1-Lap-Time-Prediction-Using-a-1-Dimensional-CNN
-Can the lap time and sector trend, recent race history, tyre age and strategy predict the next lap time, how accurate it can be estimated
+Can the lap time and sector trend, recent race history, tyre age and strategy predict the next lap time, how accurate it can be estimated 🤔
 
 
 ## About this project
@@ -22,7 +22,7 @@ Can historical Formula 1 lap timing, telemetry and racing conditions improve nex
 
 
 ## Version
-Current version: v1.0
+Current version: v2.0
 
 ## Data Source
 Primary Source is obtained through [FastF1]https://github.com/theOehrly/Fast-F1, an open-source Python providing access to previous Formula 1 racing data
