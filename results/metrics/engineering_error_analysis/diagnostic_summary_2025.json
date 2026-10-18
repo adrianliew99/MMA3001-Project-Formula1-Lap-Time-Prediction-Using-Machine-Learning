@@ -1,0 +1,15 @@
+{
+  "scope": "Descriptive 2025 holdout analysis; no retraining or model selection",
+  "observations": 20662,
+  "events": 24,
+  "drivers": 21,
+  "mae_s": 0.3862170651437421,
+  "rmse_s": 0.6798099358511948,
+  "mean_signed_error_s": -0.029231390959248846,
+  "largest_absolute_error_s": 28.202000000000012,
+  "limitations": [
+    "Only retrospectively eligible clean laps",
+    "Group comparisons are descriptive, not causal",
+    "2025 holdout was already used for final evaluation; do not retune on it"
+  ]
+}
