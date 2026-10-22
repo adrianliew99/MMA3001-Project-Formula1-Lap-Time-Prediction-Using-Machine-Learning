@@ -1,0 +1,485 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Notebook API</title>
+<style>body{max-width:1000px;margin:40px auto;font:16px/1.5 system-ui;padding:20px}pre{overflow:auto;background:#f3f5f8;padding:16px}a{color:#176b9a}</style>
+<h1>Assessed notebook source documentation</h1>
+<p>Generated from the current notebook, without executing training or download cells. The active model is implemented in the notebook; mma3001_f1.modeling is an earlier optional scaffold.</p>
+<p><a href="index.html">Package and tools API</a></p>
+<h2 id="find_exports">find_exports</h2><p>Use combined ML CSV if present; otherwise use individual race exports.</p><pre>def find_exports(folder: Path) -&gt; list[Path]:
+    &quot;&quot;&quot;Use combined ML CSV if present; otherwise use individual race exports.&quot;&quot;&quot;
+    combined = folder / &#x27;combined_next_lap_ml.csv&#x27;
+    if combined.is_file():
+        return [combined]
+    return sorted((path for path in folder.rglob(&#x27;*next_lap_ml.csv&#x27;) if path.is_file() and (not path.name.startswith(&#x27;combined_&#x27;))))</pre>
+<h2 id="load_exports">load_exports</h2><p>Load and concatenate real CSV exports with source provenance.</p><pre>def load_exports(folder: Path) -&gt; pd.DataFrame:
+    &quot;&quot;&quot;Load and concatenate real CSV exports with source provenance.&quot;&quot;&quot;
+    paths = find_exports(folder)
+    if not paths:
+        raise FileNotFoundError(f&#x27;No *next_lap_ml*.csv files found under {folder.resolve()}. Run your existing FastF1 exporter, then set DATA_DIR to its output folder.&#x27;)
+    frames = []
+    for path in paths:
+        frame = pd.read_csv(path)
+        absent = sorted(set(REQUIRED_COLUMNS) - set(frame.columns))
+        if absent:
+            raise ValueError(f&#x27;{path}: required columns missing: {absent}&#x27;)
+        frame[&#x27;SourceFile&#x27;] = str(path.resolve())
+        frames.append(frame)
+    result = pd.concat(frames, ignore_index=True)
+    for col in OPTIONAL_COLUMNS:
+        if col not in result.columns:
+            result[col] = np.nan if col != &#x27;Session&#x27; else &#x27;R&#x27;
+    result[&#x27;Session&#x27;] = result[&#x27;Session&#x27;].fillna(&#x27;R&#x27;).astype(str)
+    for col in NUMERIC_FIELDS:
+        if col in result:
+            result[col] = pd.to_numeric(result[col], errors=&#x27;coerce&#x27;)
+    for col in (&#x27;Event&#x27;, &#x27;Driver&#x27;, &#x27;TyreCompound&#x27;):
+        result[col] = result[col].astype(&#x27;string&#x27;).str.strip()
+    return result</pre>
+<h2 id="audit_pairs">audit_pairs</h2><p>Reject malformed pairs; return (clean rows, exclusion count per reason).
+
+Only input columns on an explicit allowlist enter training later. The historical
+future lap is used as the regression target and for retrospective selection only.</p><pre>def audit_pairs(data: pd.DataFrame) -&gt; tuple[pd.DataFrame, pd.DataFrame]:
+    &quot;&quot;&quot;Reject malformed pairs; return (clean rows, exclusion count per reason).
+
+    Only input columns on an explicit allowlist enter training later. The historical
+    future lap is used as the regression target and for retrospective selection only.
+    &quot;&quot;&quot;
+    df = data.copy()
+    duplicated = df.duplicated(KEYS, keep=&#x27;first&#x27;)
+    reasons = pd.DataFrame(index=df.index)
+    reasons[&#x27;duplicate_key&#x27;] = duplicated
+    reasons[&#x27;missing_identifiers&#x27;] = df[KEYS].isna().any(axis=1)
+    reasons[&#x27;non_consecutive&#x27;] = df[&#x27;TargetLapNumber&#x27;] != df[&#x27;PreviousLapNumber&#x27;] + 1
+    reasons[&#x27;invalid_time&#x27;] = ~df[&#x27;PreviousLapTime_s&#x27;].between(30, 300) | ~df[&#x27;NextLapTime_s&#x27;].between(30, 300)
+    reasons[&#x27;invalid_stint&#x27;] = ~df[&#x27;Stint&#x27;].between(1, 100)
+    reasons[&#x27;invalid_tyre_age&#x27;] = df[&#x27;TyreAge_laps&#x27;].notna() &amp; ~df[&#x27;TyreAge_laps&#x27;].between(0, 100)
+    reasons[&#x27;invalid_speed&#x27;] = df[&#x27;AvgSpeed_kmh&#x27;].notna() &amp; ~df[&#x27;AvgSpeed_kmh&#x27;].between(0, 400) | df[&#x27;MaxSpeed_kmh&#x27;].notna() &amp; ~df[&#x27;MaxSpeed_kmh&#x27;].between(0, 400)
+    reasons[&#x27;invalid_percentages&#x27;] = df[&#x27;FullThrottle_pct&#x27;].notna() &amp; ~df[&#x27;FullThrottle_pct&#x27;].between(0, 100) | df[&#x27;Braking_pct&#x27;].notna() &amp; ~df[&#x27;Braking_pct&#x27;].between(0, 100)
+    reasons[&#x27;invalid_temperature&#x27;] = df[&#x27;TrackTemp_C&#x27;].notna() &amp; ~df[&#x27;TrackTemp_C&#x27;].between(-10, 80)
+    if &#x27;DeltaLapTime_s&#x27; in df:
+        mismatch = df[&#x27;DeltaLapTime_s&#x27;].notna() &amp; ~np.isclose(df[&#x27;DeltaLapTime_s&#x27;].fillna(0), (df[&#x27;NextLapTime_s&#x27;] - df[&#x27;PreviousLapTime_s&#x27;]).fillna(0), atol=1e-05)
+        reasons[&#x27;wrong_delta_identity&#x27;] = mismatch
+    reasons = reasons.fillna(True).astype(bool)
+    clean = df.loc[~reasons.any(axis=1)].copy()
+    clean[&#x27;DeltaLapTime_s&#x27;] = clean[&#x27;NextLapTime_s&#x27;] - clean[&#x27;PreviousLapTime_s&#x27;]
+    clean = clean.sort_values(KEYS).reset_index(drop=True)
+    report = pd.DataFrame({&#x27;reason&#x27;: list(reasons.columns), &#x27;excluded_rows&#x27;: reasons.sum().astype(int).values})
+    return (clean, report)</pre>
+<h2 id="run_offline_checks">run_offline_checks</h2><p>Small hand-computable correctness checks for pairing and arithmetic.</p><pre>def run_offline_checks() -&gt; None:
+    &quot;&quot;&quot;Small hand-computable correctness checks for pairing and arithmetic.&quot;&quot;&quot;
+    toy = pd.DataFrame([{&#x27;Year&#x27;: 2023, &#x27;Event&#x27;: &#x27;TestGP&#x27;, &#x27;Session&#x27;: &#x27;R&#x27;, &#x27;Driver&#x27;: &#x27;AAA&#x27;, &#x27;PreviousLapNumber&#x27;: 4, &#x27;TargetLapNumber&#x27;: 5, &#x27;Stint&#x27;: 1, &#x27;PreviousLapTime_s&#x27;: 90.0, &#x27;NextLapTime_s&#x27;: 91.0, &#x27;DeltaLapTime_s&#x27;: 1.0, &#x27;TyreAge_laps&#x27;: 4}, {&#x27;Year&#x27;: 2023, &#x27;Event&#x27;: &#x27;TestGP&#x27;, &#x27;Session&#x27;: &#x27;R&#x27;, &#x27;Driver&#x27;: &#x27;AAA&#x27;, &#x27;PreviousLapNumber&#x27;: 5, &#x27;TargetLapNumber&#x27;: 8, &#x27;Stint&#x27;: 1, &#x27;PreviousLapTime_s&#x27;: 91.0, &#x27;NextLapTime_s&#x27;: 92.0, &#x27;DeltaLapTime_s&#x27;: 1.0, &#x27;TyreAge_laps&#x27;: 5}])
+    for col in OPTIONAL_COLUMNS:
+        if col not in toy:
+            toy[col] = np.nan
+    out, report = audit_pairs(toy)
+    assert len(out) == 1
+    assert out.iloc[0][&#x27;TargetLapNumber&#x27;] == 5
+    assert report.set_index(&#x27;reason&#x27;).loc[&#x27;non_consecutive&#x27;, &#x27;excluded_rows&#x27;] == 1
+    assert out.iloc[0][&#x27;DeltaLapTime_s&#x27;] == 1.0
+    assert out.iloc[0][&#x27;PreviousLapTime_s&#x27;] + 0 == 90.0
+    assert mean_absolute_error([1, 3], [2, 2]) == 1.0
+    assert np.isclose(np.sqrt(mean_squared_error([1, 3], [2, 2])), 1.0)
+    print(&#x27;Offline verification checks: PASS (pair continuity, delta identity, persistence, MAE, RMSE).&#x27;)</pre>
+<h2 id="split_by_season">split_by_season</h2><p>Fixed chronological seasons, with no shared event IDs across splits.</p><pre>def split_by_season(df: pd.DataFrame) -&gt; tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    &quot;&quot;&quot;Fixed chronological seasons, with no shared event IDs across splits.&quot;&quot;&quot;
+    train = df.loc[df[&#x27;Year&#x27;].isin(TRAIN_YEARS)].copy()
+    val = df.loc[df[&#x27;Year&#x27;].isin(VAL_YEARS)].copy()
+    test = df.loc[df[&#x27;Year&#x27;].isin(TEST_YEARS)].copy()
+    groups = [set(zip(t[&#x27;Year&#x27;], t[&#x27;Event&#x27;], t[&#x27;Session&#x27;])) for t in (train, val, test)]
+    assert not (groups[0] &amp; groups[1] or groups[0] &amp; groups[2] or groups[1] &amp; groups[2]), &#x27;Event leakage&#x27;
+    if train.empty or val.empty:
+        raise ValueError(&#x27;Insufficient seasons for training/validation. Update TRAIN_YEARS and VAL_YEARS to disjoint, chronological seasons you have actually downloaded; do not row-random-split.&#x27;)
+    if max(TRAIN_YEARS) &gt;= min(VAL_YEARS) or max(VAL_YEARS) &gt;= min(TEST_YEARS):
+        raise ValueError(&#x27;Season order must be TRAIN &lt; VALIDATION &lt; TEST.&#x27;)
+    return (train, val, test)</pre>
+<h2 id="make_pipeline">make_pipeline</h2><p>Return preprocessing and regression pipeline fit on training rows only.</p><pre>def make_pipeline(model, numerical: list[str], categorical: list[str]) -&gt; Pipeline:
+    &quot;&quot;&quot;Return preprocessing and regression pipeline fit on training rows only.&quot;&quot;&quot;
+    num = Pipeline([(&#x27;impute&#x27;, SimpleImputer(strategy=&#x27;median&#x27;, keep_empty_features=True)), (&#x27;scale&#x27;, StandardScaler())])
+    cat = Pipeline([(&#x27;impute&#x27;, SimpleImputer(strategy=&#x27;constant&#x27;, fill_value=&#x27;UNKNOWN&#x27;)), (&#x27;onehot&#x27;, OneHotEncoder(handle_unknown=&#x27;ignore&#x27;))])
+    prep = ColumnTransformer([(&#x27;numeric&#x27;, num, numerical), (&#x27;categorical&#x27;, cat, categorical)])
+    return Pipeline([(&#x27;preprocessor&#x27;, prep), (&#x27;regressor&#x27;, model)])</pre>
+<h2 id="candidate_models">candidate_models</h2><p>Compact validation grid; bounded for a student laptop CPU.</p><pre>def candidate_models():
+    &quot;&quot;&quot;Compact validation grid; bounded for a student laptop CPU.&quot;&quot;&quot;
+    return {&#x27;LinearRegression&#x27;: [(&#x27;default&#x27;, LinearRegression())], &#x27;DecisionTree&#x27;: [(f&#x27;depth={d},leaf={leaf}&#x27;, DecisionTreeRegressor(max_depth=d, min_samples_leaf=leaf, random_state=SEED)) for d in [5, 10] for leaf in [5, 15]], &#x27;RandomForest&#x27;: [(f&#x27;trees={trees},leaf={leaf}&#x27;, RandomForestRegressor(n_estimators=trees, min_samples_leaf=leaf, n_jobs=-1, random_state=SEED)) for trees in [75, MAX_RF_TREES] for leaf in [5, 15]]}</pre>
+<h2 id="prepare_model_inputs">prepare_model_inputs</h2><p>No docstring provided</p><pre>def prepare_model_inputs(df, numeric, categorical):
+    X = df[numeric + categorical].copy()
+    for col in numeric:
+        X[col] = pd.to_numeric(X[col], errors=&#x27;coerce&#x27;).astype(&#x27;float64&#x27;)
+    for col in categorical:
+        X[col] = X[col].astype(&#x27;object&#x27;).where(X[col].notna(), &#x27;Unknown&#x27;).astype(str)
+    return X</pre>
+<h2 id="evaluate_split">evaluate_split</h2><p>Evaluate reconstructed next-lap seconds and delta seconds.</p><pre>def evaluate_split(df: pd.DataFrame, predicted_delta: np.ndarray) -&gt; dict[str, float]:
+    &quot;&quot;&quot;Evaluate reconstructed next-lap seconds and delta seconds.&quot;&quot;&quot;
+    actual_next = df[&#x27;NextLapTime_s&#x27;].to_numpy(dtype=float)
+    previous = df[&#x27;PreviousLapTime_s&#x27;].to_numpy(dtype=float)
+    predicted_next = previous + np.asarray(predicted_delta, dtype=float)
+    return {&#x27;MAE_s&#x27;: mean_absolute_error(actual_next, predicted_next), &#x27;RMSE_s&#x27;: np.sqrt(mean_squared_error(actual_next, predicted_next)), &#x27;R2_next_lap&#x27;: r2_score(actual_next, predicted_next), &#x27;MAE_delta_s&#x27;: mean_absolute_error(df[&#x27;DeltaLapTime_s&#x27;], predicted_delta)}</pre>
+<h2 id="prediction_frame">prediction_frame</h2><p>Create auditable per-lap records from a split and delta predictions.</p><pre>def prediction_frame(frame: pd.DataFrame, pred_delta: np.ndarray) -&gt; pd.DataFrame:
+    &quot;&quot;&quot;Create auditable per-lap records from a split and delta predictions.&quot;&quot;&quot;
+    keep = [&#x27;Year&#x27;, &#x27;Event&#x27;, &#x27;Session&#x27;, &#x27;Driver&#x27;, &#x27;Stint&#x27;, &#x27;PreviousLapNumber&#x27;, &#x27;TargetLapNumber&#x27;, &#x27;TyreCompound&#x27;, &#x27;TyreAge_laps&#x27;, &#x27;PreviousLapTime_s&#x27;, &#x27;NextLapTime_s&#x27;]
+    out = frame[keep].copy()
+    out[&#x27;PredictedDeltaLapTime_s&#x27;] = pred_delta
+    out[&#x27;PredictedNextLapTime_s&#x27;] = out[&#x27;PreviousLapTime_s&#x27;] + pred_delta
+    out[&#x27;Residual_s&#x27;] = out[&#x27;NextLapTime_s&#x27;] - out[&#x27;PredictedNextLapTime_s&#x27;]
+    out[&#x27;AbsoluteError_s&#x27;] = out[&#x27;Residual_s&#x27;].abs()
+    return out</pre>
+<h1>dataset/fastf1_export_dataset.py</h1>
+<h2>good_lap</h2><p>Keep recorded green-flag, non-pit laps with credible lap times.</p><pre>def good_lap(lap):
+    &quot;&quot;&quot;Keep recorded green-flag, non-pit laps with credible lap times.&quot;&quot;&quot;
+    try:
+        return pd.notna(lap[&#x27;LapTime&#x27;]) and pd.notna(lap[&#x27;LapNumber&#x27;]) and (lap[&#x27;LapTime&#x27;].total_seconds() &gt; 0) and (lap[&#x27;IsAccurate&#x27;] == True) and pd.isna(lap[&#x27;PitInTime&#x27;]) and pd.isna(lap[&#x27;PitOutTime&#x27;]) and (str(lap[&#x27;TrackStatus&#x27;]) == &#x27;1&#x27;)
+    except (KeyError, TypeError, AttributeError):
+        return False</pre>
+<h2>weighted_mean</h2><p>Mean weighted by time between samples, ignoring invalid samples.</p><pre>def weighted_mean(values, weights):
+    &quot;&quot;&quot;Mean weighted by time between samples, ignoring invalid samples.&quot;&quot;&quot;
+    valid = values.notna() &amp; np.isfinite(values) &amp; (weights &gt; 0)
+    if not valid.any():
+        return np.nan
+    w = weights[valid]
+    return float((values[valid] * w).sum() / w.sum())</pre>
+<h2>telemetry_features</h2><p>Summarise only the car telemetry belonging to this completed lap.</p><pre>def telemetry_features(lap):
+    &quot;&quot;&quot;Summarise only the car telemetry belonging to this completed lap.&quot;&quot;&quot;
+    tel = lap.get_car_data()
+    if len(tel) &lt; 3:
+        return (None, None)
+    t = pd.to_timedelta(tel[&#x27;Time&#x27;]).dt.total_seconds()
+    dt = t.diff().fillna(0).clip(lower=0)
+    if dt.sum() &lt;= 0:
+        return (None, None)
+    speed = pd.to_numeric(tel[&#x27;Speed&#x27;], errors=&#x27;coerce&#x27;)
+    throttle = pd.to_numeric(tel[&#x27;Throttle&#x27;], errors=&#x27;coerce&#x27;)
+    brake = pd.to_numeric(tel[&#x27;Brake&#x27;], errors=&#x27;coerce&#x27;)
+    stats = {&#x27;AvgSpeed_kmh&#x27;: weighted_mean(speed, dt), &#x27;MaxSpeed_kmh&#x27;: float(speed.max()), &#x27;FullThrottle_pct&#x27;: 100 * weighted_mean((throttle &gt;= 95).astype(float), dt), &#x27;Braking_pct&#x27;: 100 * weighted_mean((brake &gt;= 0.5).astype(float), dt)}
+    return (stats, tel)</pre>
+<h2>recent_track_temperature</h2><p>Use only the latest weather reading at or before lap completion.</p><pre>def recent_track_temperature(weather, previous_lap_end):
+    &quot;&quot;&quot;Use only the latest weather reading at or before lap completion.&quot;&quot;&quot;
+    if weather is None or weather.empty or pd.isna(previous_lap_end):
+        return np.nan
+    past = weather.loc[weather[&#x27;Time&#x27;] &lt;= previous_lap_end]
+    if past.empty:
+        return np.nan
+    val = past.iloc[-1][&#x27;TrackTemp&#x27;]
+    return float(val) if pd.notna(val) else np.nan</pre>
+<h2>extract_session</h2><p>Build legacy pair features, retaining exclusion counts and source sample.</p><pre>def extract_session(session, identity):
+    &quot;&quot;&quot;Build legacy pair features, retaining exclusion counts and source sample.&quot;&quot;&quot;
+    raw = session.laps.copy()
+    raw[&#x27;LapTimeSeconds&#x27;] = raw[&#x27;LapTime&#x27;].dt.total_seconds()
+    round_number = int(session.event.RoundNumber)
+    session_id = f&quot;{identity[&#x27;year&#x27;]}-{round_number:02d}-R&quot;
+    raw[&#x27;SessionID&#x27;] = session_id
+    raw[&#x27;Year&#x27;] = identity[&#x27;year&#x27;]
+    raw[&#x27;Event&#x27;] = identity[&#x27;event&#x27;]
+    drivers = identity[&#x27;drivers&#x27;] or sorted(raw[&#x27;Driver&#x27;].dropna().unique().tolist())
+    rows, sample = ([], None)
+    diagnostics = {&#x27;candidate_pairs&#x27;: 0, &#x27;excluded_quality&#x27;: 0, &#x27;excluded_gap&#x27;: 0, &#x27;excluded_stint&#x27;: 0, &#x27;excluded_telemetry&#x27;: 0, &#x27;accepted_pairs&#x27;: 0, &#x27;telemetry_errors&#x27;: [], &#x27;per_driver_pairs&#x27;: {}}
+    for driver in drivers:
+        laps = session.laps.loc[session.laps[&#x27;Driver&#x27;] == driver].sort_values(&#x27;LapNumber&#x27;)
+        count = 0
+        for i in range(len(laps) - 1):
+            prev, nxt = (laps.iloc[i], laps.iloc[i + 1])
+            diagnostics[&#x27;candidate_pairs&#x27;] += 1
+            if not (good_lap(prev) and good_lap(nxt)):
+                diagnostics[&#x27;excluded_quality&#x27;] += 1
+                continue
+            if nxt[&#x27;LapNumber&#x27;] != prev[&#x27;LapNumber&#x27;] + 1:
+                diagnostics[&#x27;excluded_gap&#x27;] += 1
+                continue
+            if pd.isna(prev[&#x27;Stint&#x27;]) or pd.isna(nxt[&#x27;Stint&#x27;]) or nxt[&#x27;Stint&#x27;] != prev[&#x27;Stint&#x27;]:
+                diagnostics[&#x27;excluded_stint&#x27;] += 1
+                continue
+            try:
+                features, telemetry = telemetry_features(prev)
+            except Exception as exc:
+                diagnostics[&#x27;excluded_telemetry&#x27;] += 1
+                diagnostics[&#x27;telemetry_errors&#x27;].append({&#x27;driver&#x27;: driver, &#x27;lap&#x27;: int(prev[&#x27;LapNumber&#x27;]), &#x27;error&#x27;: str(exc)})
+                continue
+            if features is None:
+                diagnostics[&#x27;excluded_telemetry&#x27;] += 1
+                continue
+            previous_time = prev[&#x27;LapTime&#x27;].total_seconds()
+            next_time = nxt[&#x27;LapTime&#x27;].total_seconds()
+            rows.append({&#x27;Year&#x27;: identity[&#x27;year&#x27;], &#x27;Event&#x27;: identity[&#x27;event&#x27;], &#x27;Session&#x27;: &#x27;Race&#x27;, &#x27;Driver&#x27;: driver, &#x27;PreviousLapNumber&#x27;: int(prev[&#x27;LapNumber&#x27;]), &#x27;TargetLapNumber&#x27;: int(nxt[&#x27;LapNumber&#x27;]), &#x27;Stint&#x27;: prev[&#x27;Stint&#x27;], &#x27;PreviousLapTime_s&#x27;: previous_time, &#x27;TyreCompound&#x27;: prev[&#x27;Compound&#x27;], &#x27;TyreAge_laps&#x27;: prev[&#x27;TyreLife&#x27;], &#x27;TrackTemp_C&#x27;: recent_track_temperature(session.weather_data, prev[&#x27;Time&#x27;]), **features, &#x27;NextLapTime_s&#x27;: next_time, &#x27;DeltaLapTime_s&#x27;: next_time - previous_time, &#x27;SessionID&#x27;: session_id, &#x27;RoundNumber&#x27;: round_number})
+            count += 1
+            if sample is None:
+                sample = telemetry
+        diagnostics[&#x27;per_driver_pairs&#x27;][driver] = count
+        print(f&#x27;{driver}: {count} consecutive clean-lap pairs&#x27;)
+    diagnostics[&#x27;accepted_pairs&#x27;] = len(rows)
+    frames = {&#x27;all_laps&#x27;: raw, &#x27;weather&#x27;: pd.DataFrame(session.weather_data), &#x27;race_results&#x27;: pd.DataFrame(session.results), &#x27;next_lap_ml&#x27;: pd.DataFrame(rows, columns=ML_COLUMNS + [&#x27;SessionID&#x27;, &#x27;RoundNumber&#x27;])}
+    if sample is not None:
+        frames[&#x27;example_raw_telemetry&#x27;] = sample
+    return (session_id, frames, diagnostics)</pre>
+<h2>main</h2><p>Export one session; do not reuse partial files or silently overwrite sources.</p><pre>def main(argv=None):
+    &quot;&quot;&quot;Export one session; do not reuse partial files or silently overwrite sources.&quot;&quot;&quot;
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(&#x27;--year&#x27;, type=int, default=2024)
+    parser.add_argument(&#x27;--event&#x27;, default=&#x27;Bahrain&#x27;)
+    parser.add_argument(&#x27;--drivers&#x27;, nargs=&#x27;*&#x27;, default=None)
+    parser.add_argument(&#x27;--output&#x27;, default=&#x27;f1_export&#x27;)
+    parser.add_argument(&#x27;--cache-dir&#x27;, type=Path, help=&#x27;Reuse an existing FastF1 cache&#x27;)
+    parser.add_argument(&#x27;--offline&#x27;, action=&#x27;store_true&#x27;, help=&#x27;Only use cached provider responses; never download&#x27;)
+    parser.add_argument(&#x27;--overwrite&#x27;, action=&#x27;store_true&#x27;, help=&quot;Explicitly replace this event&#x27;s existing exports&quot;)
+    args = parser.parse_args(argv)
+    identity = request_identity(args.year, args.event, args.drivers)
+    if args.year &lt; 2018 or not slug(args.event):
+        parser.error(&#x27;Use a FastF1-era season &gt;=2018 and a nonempty event name&#x27;)
+    if any((len(d) != 3 or not d.isalpha() for d in identity[&#x27;drivers&#x27;])):
+        parser.error(&#x27;Drivers must be three-letter codes&#x27;)
+    out = Path(args.output).resolve()
+    prefix = f&#x27;{args.year}_{slug(args.event)}&#x27;
+    valid, reason, manifest = validate_export(out, prefix, identity)
+    if valid and (not args.overwrite):
+        print(f&quot;Verified cached export: {manifest[&#x27;session_id&#x27;]}&quot;)
+        return 0
+    if not args.overwrite and out.exists() and list(out.glob(f&#x27;{prefix}_*&#x27;)):
+        print(f&#x27;Incomplete/stale export: {reason}. Choose a fresh --output or explicitly --overwrite.&#x27;)
+        return 1
+    cache = (args.cache_dir or out / &#x27;fastf1_cache&#x27;).resolve()
+    if args.offline and (not cache.is_dir()):
+        print(f&#x27;Offline cache directory does not exist: {cache}&#x27;)
+        return 1
+    out.mkdir(parents=True, exist_ok=True)
+    cache.mkdir(parents=True, exist_ok=True)
+    started = utc_now()
+    manifest_path = out / f&#x27;{prefix}_manifest.json&#x27;
+    attempt = {&#x27;status&#x27;: &#x27;running&#x27;, &#x27;request&#x27;: identity, &#x27;started_utc&#x27;: started, &#x27;source_mode&#x27;: &#x27;offline_cache&#x27; if args.offline else &#x27;provider_with_cache&#x27;}
+    atomic_json(manifest_path, attempt)
+    try:
+        fastf1.Cache.enable_cache(str(cache))
+        fastf1.Cache.offline_mode(args.offline)
+        session = fastf1.get_session(args.year, args.event, &#x27;R&#x27;)
+        session.load(telemetry=True, weather=True, messages=False)
+        if session.laps.empty:
+            raise RuntimeError(&#x27;FastF1 returned no laps&#x27;)
+        session_id, frames, diagnostics = extract_session(session, identity)
+        errors = check_tables(frames, identity, session_id)
+        if errors:
+            raise ValueError(&#x27;; &#x27;.join(errors))
+        for kind, frame in frames.items():
+            atomic_csv(out / f&#x27;{prefix}_{kind}.csv&#x27;, frame)
+        manifest = build_manifest(out, prefix, identity, session_id, frames, attempt[&#x27;source_mode&#x27;], diagnostics, started)
+        manifest[&#x27;provider_event&#x27;] = str(session.event.EventName)
+        atomic_json(manifest_path, manifest)
+        print(f&quot;Completed {session_id}: {len(frames[&#x27;next_lap_ml&#x27;])} pairs; manifest {manifest_path}&quot;)
+        return 0
+    except Exception as exc:
+        attempt.update(status=&#x27;failed&#x27;, failed_utc=utc_now(), error=f&#x27;{type(exc).__name__}: {exc}&#x27;)
+        atomic_json(manifest_path, attempt)
+        print(f&quot;EXPORT FAILED: {attempt[&#x27;error&#x27;]}&quot;, file=sys.stderr)
+        return 1</pre>
+<h1>dataset/fastf1_export_multi_gp.py</h1>
+<h2>utc_now</h2><p>Return an ISO-8601 UTC timestamp.</p><pre>def utc_now() -&gt; str:
+    &quot;&quot;&quot;Return an ISO-8601 UTC timestamp.&quot;&quot;&quot;
+    return datetime.now(timezone.utc).isoformat()</pre>
+<h2>slug</h2><p>Create an ASCII-safe directory token for a race name.</p><pre>def slug(text: str) -&gt; str:
+    &quot;&quot;&quot;Create an ASCII-safe directory token for a race name.&quot;&quot;&quot;
+    import re
+    import unicodedata
+    text = unicodedata.normalize(&#x27;NFKD&#x27;, str(text)).encode(&#x27;ascii&#x27;, &#x27;ignore&#x27;).decode()
+    return re.sub(&#x27;[^a-z0-9]+&#x27;, &#x27;_&#x27;, text.lower()).strip(&#x27;_&#x27;)</pre>
+<h2>write_json</h2><p>Atomically save a machine-readable manifest.</p><pre>def write_json(path: Path, payload: dict[str, Any]) -&gt; None:
+    &quot;&quot;&quot;Atomically save a machine-readable manifest.&quot;&quot;&quot;
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temp = path.with_suffix(path.suffix + &#x27;.tmp&#x27;)
+    temp.write_text(json.dumps(payload, indent=2, default=str), encoding=&#x27;utf-8&#x27;)
+    temp.replace(path)</pre>
+<h2>write_csv</h2><p>Atomically save CSV output.</p><pre>def write_csv(path: Path, frame: pd.DataFrame) -&gt; None:
+    &quot;&quot;&quot;Atomically save CSV output.&quot;&quot;&quot;
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temp = path.with_suffix(path.suffix + &#x27;.tmp&#x27;)
+    frame.to_csv(temp, index=False)
+    temp.replace(path)</pre>
+<h2>get_schedule</h2><p>Fetch the real event schedule, retrying transient provider errors.</p><pre>def get_schedule(year: int, retries: int=2) -&gt; pd.DataFrame:
+    &quot;&quot;&quot;Fetch the real event schedule, retrying transient provider errors.&quot;&quot;&quot;
+    last_error: Exception | None = None
+    for attempt in range(retries + 1):
+        try:
+            schedule = fastf1.get_event_schedule(year, include_testing=False)
+            if schedule is not None and (not schedule.empty) and (&#x27;EventName&#x27; in schedule):
+                return schedule
+            last_error = RuntimeError(f&#x27;Schedule for {year} is empty or lacks EventName&#x27;)
+        except Exception as exc:
+            last_error = exc
+        if attempt &lt; retries:
+            LOG.warning(&#x27;Schedule %d attempt %d failed: %s&#x27;, year, attempt + 1, last_error)
+            time.sleep(2 * (attempt + 1))
+    raise RuntimeError(f&#x27;Cannot resolve schedule for {year}: {last_error}&#x27;)</pre>
+<h2>get_races</h2><p>Resolve user-supplied venue/country/name filters to race rounds.</p><pre>def get_races(year: int, filters: list[str]) -&gt; list[dict[str, Any]]:
+    &quot;&quot;&quot;Resolve user-supplied venue/country/name filters to race rounds.&quot;&quot;&quot;
+    schedule = get_schedule(year)
+    resolved: list[dict[str, Any]] = []
+    matched: set[str] = set()
+    for _, event in schedule.iterrows():
+        round_no = pd.to_numeric(event.get(&#x27;RoundNumber&#x27;), errors=&#x27;coerce&#x27;)
+        if pd.isna(round_no) or round_no &lt; 1 or float(round_no) % 1 != 0:
+            continue
+        event_name = str(event.get(&#x27;EventName&#x27;, &#x27;&#x27;)).strip()
+        if not event_name or event_name.lower() == &#x27;nan&#x27;:
+            continue
+        searchable = &#x27; &#x27;.join((str(event.get(k, &#x27;&#x27;)) for k in (&#x27;EventName&#x27;, &#x27;Country&#x27;, &#x27;Location&#x27;))).lower()
+        hits = {f for f in filters if f.casefold() in searchable.casefold()}
+        if filters and (not hits):
+            continue
+        matched |= hits
+        resolved.append({&#x27;year&#x27;: int(year), &#x27;round&#x27;: int(round_no), &#x27;event&#x27;: event_name})
+    unknown = set(filters) - matched
+    if unknown:
+        raise ValueError(f&#x27;Unmatched event filters for {year}: {sorted(unknown)}&#x27;)
+    return sorted(resolved, key=lambda item: (item[&#x27;year&#x27;], item[&#x27;round&#x27;]))</pre>
+<h2>race_folder</h2><p>Return a unique destination for one race&#x27;s CSVs and manifest.</p><pre>def race_folder(output: Path, entry: dict[str, Any]) -&gt; Path:
+    &quot;&quot;&quot;Return a unique destination for one race&#x27;s CSVs and manifest.&quot;&quot;&quot;
+    return output / &#x27;races&#x27; / f&quot;{entry[&#x27;year&#x27;]}_{entry[&#x27;round&#x27;]:02d}_{slug(entry[&#x27;event&#x27;])}&quot;</pre>
+<h2>validate_race</h2><p>Verify completion manifest and nonempty ML CSV before reuse/merging.
+
+Also validate Year, Event, and selected Driver identifiers in the CSV to
+prevent cross-request reuse. The extraction manifest is kept untouched.</p><pre>def validate_race(folder: Path, entry: dict[str, Any], drivers: list[str]) -&gt; tuple[bool, str, Path | None, int]:
+    &quot;&quot;&quot;Verify completion manifest and nonempty ML CSV before reuse/merging.
+
+    Also validate Year, Event, and selected Driver identifiers in the CSV to
+    prevent cross-request reuse. The extraction manifest is kept untouched.
+    &quot;&quot;&quot;
+    manifests = sorted(folder.glob(&#x27;*_manifest.json&#x27;))
+    if len(manifests) != 1:
+        return (False, f&#x27;expected one completion manifest, found {len(manifests)}&#x27;, None, 0)
+    try:
+        manifest = json.loads(manifests[0].read_text(encoding=&#x27;utf-8&#x27;))
+    except (OSError, json.JSONDecodeError) as exc:
+        return (False, f&#x27;cannot read manifest: {exc}&#x27;, None, 0)
+    if str(manifest.get(&#x27;status&#x27;, &#x27;&#x27;)).lower() != &#x27;complete&#x27;:
+        return (False, &#x27;manifest status is not complete&#x27;, None, 0)
+    csvs = sorted(folder.glob(&#x27;*_next_lap_ml.csv&#x27;))
+    if len(csvs) != 1:
+        return (False, f&#x27;expected one ML CSV, found {len(csvs)}&#x27;, None, 0)
+    try:
+        frame = pd.read_csv(csvs[0], low_memory=False)
+    except Exception as exc:
+        return (False, f&#x27;cannot read ML CSV: {exc}&#x27;, None, 0)
+    required = {&#x27;Year&#x27;, &#x27;Event&#x27;, &#x27;Driver&#x27;, &#x27;PreviousLapTime_s&#x27;, &#x27;NextLapTime_s&#x27;}
+    absent = required.difference(frame.columns)
+    if absent:
+        return (False, f&#x27;missing ML columns: {sorted(absent)}&#x27;, None, 0)
+    if frame.empty:
+        return (False, &#x27;ML CSV contains zero lap pairs&#x27;, None, 0)
+    years = pd.to_numeric(frame[&#x27;Year&#x27;], errors=&#x27;coerce&#x27;)
+    if not years.eq(entry[&#x27;year&#x27;]).all():
+        return (False, &#x27;Year column disagrees with requested race&#x27;, None, 0)
+    if not frame[&#x27;Event&#x27;].fillna(&#x27;&#x27;).astype(str).str.casefold().eq(entry[&#x27;event&#x27;].casefold()).all():
+        return (False, &#x27;Event column disagrees with requested race&#x27;, None, 0)
+    if drivers and (not frame[&#x27;Driver&#x27;].dropna().astype(str).str.upper().isin(drivers).all()):
+        return (False, &#x27;Driver column has unrequested drivers&#x27;, None, 0)
+    if (pd.to_numeric(frame[&#x27;NextLapTime_s&#x27;], errors=&#x27;coerce&#x27;) &lt;= 0).any():
+        return (False, &#x27;nonpositive next-lap time&#x27;, None, 0)
+    return (True, &#x27;verified complete export&#x27;, csvs[0], len(frame))</pre>
+<h2>export_one</h2><p>Run one extractor process, safely resuming only verified existing races.</p><pre>def export_one(entry: dict[str, Any], drivers: list[str], output: Path, cache: Path, offline: bool, overwrite: bool) -&gt; dict[str, Any]:
+    &quot;&quot;&quot;Run one extractor process, safely resuming only verified existing races.&quot;&quot;&quot;
+    folder = race_folder(output, entry)
+    ok, reason, csv_path, rows = validate_race(folder, entry, drivers)
+    if ok and (not overwrite):
+        return {**entry, &#x27;Status&#x27;: &#x27;cached&#x27;, &#x27;MLRows&#x27;: rows, &#x27;Reason&#x27;: reason, &#x27;CSV&#x27;: str(csv_path), &#x27;Folder&#x27;: str(folder)}
+    if folder.exists() and any(folder.iterdir()) and (not overwrite):
+        return {**entry, &#x27;Status&#x27;: &#x27;incomplete&#x27;, &#x27;MLRows&#x27;: 0, &#x27;Reason&#x27;: f&#x27;{reason}; retry with --overwrite or a different --output&#x27;, &#x27;CSV&#x27;: &#x27;&#x27;, &#x27;Folder&#x27;: str(folder)}
+    folder.mkdir(parents=True, exist_ok=True)
+    cache.mkdir(parents=True, exist_ok=True)
+    command = [sys.executable, &#x27;-m&#x27;, EXTRACTOR_MODULE, &#x27;--year&#x27;, str(entry[&#x27;year&#x27;]), &#x27;--event&#x27;, entry[&#x27;event&#x27;], &#x27;--output&#x27;, str(folder), &#x27;--cache-dir&#x27;, str(cache)]
+    if drivers:
+        command.extend([&#x27;--drivers&#x27;, *drivers])
+    if offline:
+        command.append(&#x27;--offline&#x27;)
+    if overwrite:
+        command.append(&#x27;--overwrite&#x27;)
+    LOG.info(&#x27;Launching %s&#x27;, &#x27; &#x27;.join(command))
+    try:
+        completed = subprocess.run(command, cwd=PROJECT_ROOT, check=False)
+    except OSError as exc:
+        return {**entry, &#x27;Status&#x27;: &#x27;failed&#x27;, &#x27;MLRows&#x27;: 0, &#x27;Reason&#x27;: str(exc), &#x27;CSV&#x27;: &#x27;&#x27;, &#x27;Folder&#x27;: str(folder)}
+    ok, reason, csv_path, rows = validate_race(folder, entry, drivers)
+    successful = completed.returncode == 0 and ok
+    return {**entry, &#x27;Status&#x27;: &#x27;success&#x27; if successful else &#x27;failed&#x27;, &#x27;MLRows&#x27;: rows if successful else 0, &#x27;Reason&#x27;: reason if successful else f&#x27;extractor exit {completed.returncode}; {reason}&#x27;, &#x27;CSV&#x27;: str(csv_path) if successful else &#x27;&#x27;, &#x27;Folder&#x27;: str(folder)}</pre>
+<h2>combine_exports</h2><p>Combine verified ML CSVs and optional all-laps CSVs, never duplicating races.</p><pre>def combine_exports(records: list[dict[str, Any]], output: Path) -&gt; int:
+    &quot;&quot;&quot;Combine verified ML CSVs and optional all-laps CSVs, never duplicating races.&quot;&quot;&quot;
+    accepted = [r for r in records if r[&#x27;Status&#x27;] in (&#x27;success&#x27;, &#x27;cached&#x27;)]
+    frames: list[pd.DataFrame] = []
+    raw_frames: list[pd.DataFrame] = []
+    for record in accepted:
+        ml = pd.read_csv(record[&#x27;CSV&#x27;], low_memory=False)
+        ml[&#x27;RoundNumber&#x27;] = record[&#x27;round&#x27;]
+        ml[&#x27;SessionID&#x27;] = f&quot;{record[&#x27;year&#x27;]}-{record[&#x27;round&#x27;]:02d}-R&quot;
+        frames.append(ml)
+        raw_files = sorted(Path(record[&#x27;Folder&#x27;]).glob(&#x27;*_all_laps.csv&#x27;))
+        if len(raw_files) == 1:
+            raw = pd.read_csv(raw_files[0], low_memory=False)
+            raw[&#x27;Year&#x27;] = record[&#x27;year&#x27;]
+            raw[&#x27;Event&#x27;] = record[&#x27;event&#x27;]
+            raw_frames.append(raw)
+    if not frames:
+        return 0
+    combined = pd.concat(frames, ignore_index=True)
+    keys = [c for c in (&#x27;Year&#x27;, &#x27;Event&#x27;, &#x27;Session&#x27;, &#x27;Driver&#x27;, &#x27;PreviousLapNumber&#x27;, &#x27;TargetLapNumber&#x27;) if c in combined]
+    if keys and combined.duplicated(keys).any():
+        raise ValueError(&#x27;Duplicate lap pairs in aggregate; inspect overlapping source exports&#x27;)
+    write_csv(output / &#x27;combined_next_lap_ml.csv&#x27;, combined)
+    if raw_frames:
+        write_csv(output / &#x27;combined_all_laps.csv&#x27;, pd.concat(raw_frames, ignore_index=True))
+    return len(combined)</pre>
+<h2>build_parser</h2><p>Create CLI preserving existing argument names.</p><pre>def build_parser() -&gt; argparse.ArgumentParser:
+    &quot;&quot;&quot;Create CLI preserving existing argument names.&quot;&quot;&quot;
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(&#x27;--years&#x27;, nargs=&#x27;+&#x27;, type=int, default=[2024])
+    parser.add_argument(&#x27;--events&#x27;, nargs=&#x27;*&#x27;, default=[&#x27;Bahrain&#x27;, &#x27;Monaco&#x27;, &#x27;Japan&#x27;], help=&#x27;Name, country or location filters; empty --events means all races&#x27;)
+    parser.add_argument(&#x27;--drivers&#x27;, nargs=&#x27;*&#x27;, default=[&#x27;VER&#x27;, &#x27;HAM&#x27;], help=&#x27;Three-letter driver codes; empty --drivers means all drivers&#x27;)
+    parser.add_argument(&#x27;--max-races-per-year&#x27;, type=int, default=30)
+    parser.add_argument(&#x27;--max-sessions&#x27;, type=int, default=3, help=&#x27;Explicit upper bound on number of race sessions to process&#x27;)
+    parser.add_argument(&#x27;--output&#x27;, type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument(&#x27;--cache-dir&#x27;, type=Path, default=DEFAULT_CACHE)
+    parser.add_argument(&#x27;--offline&#x27;, action=&#x27;store_true&#x27;)
+    parser.add_argument(&#x27;--overwrite&#x27;, action=&#x27;store_true&#x27;, help=&#x27;Permit per-race exporter to replace its own incomplete artifacts&#x27;)
+    parser.add_argument(&#x27;--dry-run&#x27;, action=&#x27;store_true&#x27;)
+    return parser</pre>
+<h2>main</h2><p>Resolve the download budget, execute exports and summarize real outcomes.</p><pre>def main(argv: list[str] | None=None) -&gt; int:
+    &quot;&quot;&quot;Resolve the download budget, execute exports and summarize real outcomes.&quot;&quot;&quot;
+    args = build_parser().parse_args(argv)
+    if args.max_sessions &lt; 1 or args.max_races_per_year &lt; 1:
+        raise SystemExit(&#x27;--max-sessions and --max-races-per-year must be positive&#x27;)
+    drivers = sorted({d.upper() for d in args.drivers})
+    filters = list(dict.fromkeys(args.events))
+    logging.basicConfig(level=logging.INFO, format=&#x27;%(levelname)s %(message)s&#x27;)
+    selections: list[dict[str, Any]] = []
+    try:
+        for year in sorted(set(args.years)):
+            selections.extend(get_races(year, filters)[:args.max_races_per_year])
+    except (RuntimeError, ValueError) as exc:
+        print(f&#x27;Schedule resolution failed: {exc}&#x27;, file=sys.stderr)
+        return 2
+    if not selections:
+        print(&#x27;No matching races were resolved&#x27;, file=sys.stderr)
+        return 2
+    if len(selections) &gt; args.max_sessions:
+        print(f&#x27;Resolved {len(selections)} sessions but limit is {args.max_sessions}. Raise --max-sessions explicitly or reduce --events/--years.&#x27;, file=sys.stderr)
+        return 2
+    print(f&quot;Resolved {len(selections)} sessions (limit {args.max_sessions}); drivers={drivers or &#x27;ALL&#x27;}&quot;, flush=True)
+    for item in selections:
+        print(f&quot;  {item[&#x27;year&#x27;]} round {item[&#x27;round&#x27;]}: {item[&#x27;event&#x27;]}&quot;, flush=True)
+    if args.dry_run:
+        print(&#x27;Dry run only: no event data was downloaded or written.&#x27;)
+        return 0
+    output = args.output.expanduser().resolve()
+    cache = args.cache_dir.expanduser().resolve()
+    output.mkdir(parents=True, exist_ok=True)
+    run_path = output / &#x27;batch_manifest.json&#x27;
+    records: list[dict[str, Any]] = []
+    write_json(run_path, {&#x27;status&#x27;: &#x27;running&#x27;, &#x27;started_utc&#x27;: utc_now(), &#x27;selection&#x27;: selections, &#x27;drivers&#x27;: drivers, &#x27;offline&#x27;: args.offline})
+    for entry in selections:
+        result = export_one(entry, drivers, output, cache, args.offline, args.overwrite)
+        records.append(result)
+        print(f&quot;{entry[&#x27;year&#x27;]} {entry[&#x27;event&#x27;]}: {result[&#x27;Status&#x27;]}; {result[&#x27;Reason&#x27;]}&quot;, flush=True)
+        write_csv(output / &#x27;export_summary.csv&#x27;, pd.DataFrame(records))
+    try:
+        rows = combine_exports(records, output)
+        merge_error = None
+    except Exception as exc:
+        rows, merge_error = (0, str(exc))
+        LOG.error(&#x27;Aggregate failed: %s&#x27;, exc)
+    good = sum((record[&#x27;Status&#x27;] in (&#x27;success&#x27;, &#x27;cached&#x27;) for record in records))
+    completed = good == len(selections) and merge_error is None and (rows &gt; 0)
+    write_json(run_path, {&#x27;status&#x27;: &#x27;complete&#x27; if completed else &#x27;incomplete&#x27;, &#x27;finished_utc&#x27;: utc_now(), &#x27;selection&#x27;: selections, &#x27;drivers&#x27;: drivers, &#x27;completed_sessions&#x27;: good, &#x27;requested_sessions&#x27;: len(selections), &#x27;combined_ml_rows&#x27;: rows, &#x27;merge_error&#x27;: merge_error, &#x27;records&#x27;: records})
+    print(f&quot;Batch {(&#x27;complete&#x27; if completed else &#x27;incomplete&#x27;)}: {good}/{len(selections)} usable sessions; combined ML rows={rows:,}; {output}&quot;)
+    return 0 if completed else 1</pre>
+</html>

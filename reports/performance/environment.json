@@ -1,0 +1,346 @@
+{
+  "measured_utc": "2026-10-22T12:10:27.510792+00:00",
+  "source_commit": "e823d7e1856ea93c98576c790c4266acb39a3a88",
+  "python": "3.12.14",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "cpu_model": "x86_64",
+  "logical_cpu_count": 9,
+  "versions": {
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.8.0"
+  },
+  "thread_environment": {
+    "OMP_NUM_THREADS": null,
+    "OPENBLAS_NUM_THREADS": null,
+    "MKL_NUM_THREADS": null
+  },
+  "random_forest_n_jobs": -1,
+  "train_years": [
+    2022,
+    2023
+  ],
+  "validation_years": [
+    2024
+  ],
+  "holdout_used": false,
+  "rows_train": 35872,
+  "rows_validation": 21394,
+  "fit_repetitions": 1,
+  "scope": "End-to-end pipeline predict plus next-lap reconstruction; prepared inputs; no CSV loading, feature preparation, metrics, serialization or memory tracing in timed calls.",
+  "memory_scope": "DataFrame deep input bytes (persistence: NumPy bytes), pickle storage bytes, separate-call tracemalloc peak. No total/native peak RSS claim.",
+  "limitations": [
+    "Shared-host timings, not a real-time guarantee",
+    "p95 over few repetitions is descriptive, not a confidence bound",
+    "Single fit duration is not a repeated training benchmark",
+    "CPU tree/forest operation counts depend on paths and are not measured FLOPS; no roofline/arithmetic-intensity claim"
+  ],
+  "sha256": {
+    "MMA3001_F1_Next_Lap_Prediction.ipynb": "70893dc717744ba8a6f99d5e3435acc3c4b3221ce9f32b2e1fc4af127c3dd0a4",
+    "results/metrics/validation_grid.csv": "24137e60599e61c6f99188da172a8a36d8d76292aee68f22079ed698c5bccb09",
+    "f1_dataset/combined_next_lap_ml.csv": "5a83aca748e1a7a5c20a4314f9a767b12f84905d1548ac40a10d14a02924dc82"
+  },
+  "timings": [
+    {
+      "key": [
+        "A_persistence",
+        "Persistence",
+        "none"
+      ],
+      "batch": {
+        "median_s": 7.02e-06,
+        "p95_s": 8.293999999999999e-06,
+        "min_s": 6.86e-06,
+        "max_s": 8.482e-06,
+        "repeats": 9,
+        "samples_s": [
+          8.482e-06,
+          8.012e-06,
+          7.16e-06,
+          6.93e-06,
+          6.9e-06,
+          7.02e-06,
+          6.86e-06,
+          6.89e-06,
+          7.18e-06
+        ]
+      },
+      "single": {
+        "median_s": 1.142e-06,
+        "p95_s": 1.9731999999999996e-06,
+        "min_s": 1.101e-06,
+        "max_s": 2.334e-06,
+        "repeats": 9,
+        "samples_s": [
+          2.334e-06,
+          1.432e-06,
+          1.322e-06,
+          1.141e-06,
+          1.121e-06,
+          1.142e-06,
+          1.101e-06,
+          1.151e-06,
+          1.121e-06
+        ]
+      }
+    },
+    {
+      "key": [
+        "C_telemetry",
+        "DecisionTree",
+        "depth=5,leaf=15"
+      ],
+      "batch": {
+        "median_s": 0.016648968,
+        "p95_s": 0.018784377799999998,
+        "min_s": 0.015418597,
+        "max_s": 0.018902487,
+        "repeats": 9,
+        "samples_s": [
+          0.015418597,
+          0.016053653,
+          0.016648968,
+          0.018607214,
+          0.017497855,
+          0.017515922,
+          0.0159381,
+          0.018902487,
+          0.016579103
+        ]
+      },
+      "single": {
+        "median_s": 0.002558898,
+        "p95_s": 0.0030002763999999998,
+        "min_s": 0.002350946,
+        "max_s": 0.003002696,
+        "repeats": 9,
+        "samples_s": [
+          0.002677286,
+          0.002667592,
+          0.002527351,
+          0.002558898,
+          0.002350946,
+          0.002521001,
+          0.002554823,
+          0.003002696,
+          0.002996647
+        ]
+      }
+    },
+    {
+      "key": [
+        "B_context",
+        "DecisionTree",
+        "depth=5,leaf=15"
+      ],
+      "batch": {
+        "median_s": 0.013515065,
+        "p95_s": 0.014836945399999999,
+        "min_s": 0.0128598,
+        "max_s": 0.015076213,
+        "repeats": 9,
+        "samples_s": [
+          0.015076213,
+          0.013515065,
+          0.012869535,
+          0.013121213,
+          0.0128598,
+          0.013188675,
+          0.014478044,
+          0.014385564,
+          0.014120777
+        ]
+      },
+      "single": {
+        "median_s": 0.002663887,
+        "p95_s": 0.003084004,
+        "min_s": 0.002465438,
+        "max_s": 0.003188986,
+        "repeats": 9,
+        "samples_s": [
+          0.002541111,
+          0.002716195,
+          0.002926531,
+          0.003188986,
+          0.002663887,
+          0.002471538,
+          0.002653411,
+          0.00271267,
+          0.002465438
+        ]
+      }
+    },
+    {
+      "key": [
+        "C_telemetry",
+        "RandomForest",
+        "trees=150,leaf=15"
+      ],
+      "batch": {
+        "median_s": 0.071278697,
+        "p95_s": 0.07635028619999999,
+        "min_s": 0.060160917,
+        "max_s": 0.078569101,
+        "repeats": 9,
+        "samples_s": [
+          0.073022064,
+          0.060160917,
+          0.071652735,
+          0.06781615,
+          0.06876318,
+          0.069565561,
+          0.071907529,
+          0.071278697,
+          0.078569101
+        ]
+      },
+      "single": {
+        "median_s": 0.028174737,
+        "p95_s": 0.031803745200000004,
+        "min_s": 0.026960646,
+        "max_s": 0.033187576,
+        "repeats": 9,
+        "samples_s": [
+          0.029727999,
+          0.027473568,
+          0.027057062,
+          0.026960646,
+          0.033187576,
+          0.028478955,
+          0.029696265,
+          0.028174737,
+          0.028170176
+        ]
+      }
+    },
+    {
+      "key": [
+        "B_context",
+        "RandomForest",
+        "trees=150,leaf=15"
+      ],
+      "batch": {
+        "median_s": 0.066092998,
+        "p95_s": 0.0706087348,
+        "min_s": 0.056536536,
+        "max_s": 0.071209208,
+        "repeats": 9,
+        "samples_s": [
+          0.061833808,
+          0.071209208,
+          0.062913036,
+          0.069708025,
+          0.057496956,
+          0.068072119,
+          0.056536536,
+          0.066092998,
+          0.066114526
+        ]
+      },
+      "single": {
+        "median_s": 0.027023927,
+        "p95_s": 0.027936031,
+        "min_s": 0.025878228,
+        "max_s": 0.028136785,
+        "repeats": 9,
+        "samples_s": [
+          0.026864993,
+          0.026891431,
+          0.027263552,
+          0.025878228,
+          0.026907872,
+          0.027023927,
+          0.0276349,
+          0.028136785,
+          0.027568351
+        ]
+      }
+    },
+    {
+      "key": [
+        "B_context",
+        "LinearRegression",
+        "default"
+      ],
+      "batch": {
+        "median_s": 0.013417228,
+        "p95_s": 0.0146597164,
+        "min_s": 0.012556563,
+        "max_s": 0.015030134,
+        "repeats": 9,
+        "samples_s": [
+          0.013417228,
+          0.015030134,
+          0.01410409,
+          0.013565181,
+          0.012727261,
+          0.01326569,
+          0.013799043,
+          0.012556563,
+          0.012935845
+        ]
+      },
+      "single": {
+        "median_s": 0.002714202,
+        "p95_s": 0.0032070263999999997,
+        "min_s": 0.002522003,
+        "max_s": 0.0032721,
+        "repeats": 9,
+        "samples_s": [
+          0.0032721,
+          0.002759149,
+          0.002714202,
+          0.002522003,
+          0.002792,
+          0.002683516,
+          0.003109416,
+          0.002636084,
+          0.0025601
+        ]
+      }
+    },
+    {
+      "key": [
+        "C_telemetry",
+        "LinearRegression",
+        "default"
+      ],
+      "batch": {
+        "median_s": 0.016240815,
+        "p95_s": 0.019760241199999997,
+        "min_s": 0.014035589,
+        "max_s": 0.021482814,
+        "repeats": 9,
+        "samples_s": [
+          0.016240815,
+          0.015472299,
+          0.017176382,
+          0.016691528,
+          0.014461589,
+          0.014035589,
+          0.021482814,
+          0.016600155,
+          0.01562538
+        ]
+      },
+      "single": {
+        "median_s": 0.00283849,
+        "p95_s": 0.0032773648,
+        "min_s": 0.002325788,
+        "max_s": 0.003423308,
+        "repeats": 9,
+        "samples_s": [
+          0.002392318,
+          0.002670366,
+          0.003423308,
+          0.00305845,
+          0.00283849,
+          0.002975244,
+          0.002951398,
+          0.002660351,
+          0.002325788
+        ]
+      }
+    }
+  ]
+}

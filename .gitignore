@@ -12,3 +12,6 @@ cache/
 fastf1_cache/
 *.ff1pkl
 fastf1_http_cache.sqlite*
+
+# Raw notebook execution logs contain local paths; publish summary only.
+reports/reproduction/execution.log

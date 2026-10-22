@@ -1,0 +1,23 @@
+# Environment snapshot from the successful Linux Python 3.12 audit.
+# Constraints for packages measured here; not a full platform-independent lock file.
+numpy==2.3.5
+pandas==2.2.3
+scikit-learn==1.8.0
+scipy==1.17.0
+joblib==1.5.3
+threadpoolctl==3.6.0
+matplotlib==3.10.8
+contourpy==1.3.3
+cycler==0.12.1
+fonttools==4.61.1
+kiwisolver==1.4.9
+pillow==12.3.0
+pyparsing==3.3.2
+python-dateutil==2.9.0.post0
+six==1.17.0
+pytz==2026.5
+tzdata==2026.5
+pytest==9.1.1
+pdoc==16.0.0
+nbformat==5.11.1
+nbclient==0.11.0

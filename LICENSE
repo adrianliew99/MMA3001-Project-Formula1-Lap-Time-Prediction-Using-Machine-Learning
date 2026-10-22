@@ -1,0 +1,14 @@
+LICENSING STATUS - NO OPEN-SOURCE LICENCE GRANTED
+
+This repository currently has no author-selected open-source software licence.
+No additional permission to copy, modify or redistribute the original project code
+is granted by this notice. Rights remain with their respective owners except as
+otherwise permitted by applicable law or existing platform terms.
+
+Third-party libraries retain their own licences. Formula 1 timing, telemetry and
+other exported source data belong to their respective owners and are not licensed
+by this project. A software licence for FastF1 does not itself license the data.
+
+Before the final public distribution, the project author should select appropriate
+terms for their own code and verify the terms applicable to included data. This
+notice records the unresolved status; it is not a substitute for that decision.
