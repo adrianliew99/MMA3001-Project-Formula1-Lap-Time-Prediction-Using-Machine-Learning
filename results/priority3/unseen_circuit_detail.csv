@@ -1,0 +1,17 @@
+Event,Model,Observations,MAE_s
+Bahrain Grand Prix,Persistence,931,0.31253920515574646
+British Grand Prix,Persistence,787,1.0779656925031762
+Monaco Grand Prix,Persistence,1134,0.6785176366843033
+Singapore Grand Prix,Persistence,1066,0.44868292682926814
+Bahrain Grand Prix,Linear Regression,931,4.609684225425336
+British Grand Prix,Linear Regression,787,4.192176483693925
+Monaco Grand Prix,Linear Regression,1134,13.70375402074072
+Singapore Grand Prix,Linear Regression,1066,2.7099636329337287
+Bahrain Grand Prix,Decision Tree,931,0.3258102017229214
+British Grand Prix,Decision Tree,787,1.0852000239640622
+Monaco Grand Prix,Decision Tree,1134,1.3435139730639718
+Singapore Grand Prix,Decision Tree,1066,1.3653933823740858
+Bahrain Grand Prix,Random Forest,931,0.6799561597747522
+British Grand Prix,Random Forest,787,1.0805944137049357
+Monaco Grand Prix,Random Forest,1134,4.2265246613568115
+Singapore Grand Prix,Random Forest,1066,1.5929492748853662

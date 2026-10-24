@@ -54,3 +54,44 @@ FastF1 is used to retrieve racing data. The original timing data is not owned by
 
 ### AI acknowledgement
 LLMs model (Chatgpt 6 Astra, Cursor Pro, Google Gemini3 Plus) was used in the project development, suggesting evaluation 
+
+## Automated tests and test reports
+
+The pytest suite uses deterministic synthetic examples to test configuration,
+lap quality flags, telemetry integration, weather availability, chronological
+splitting, and baseline fitting/evaluation. Artifact tests independently
+recalculate overall and grouped errors from the saved 2025 holdout predictions.
+They require the CSV/JSON files in `results/metrics` and `results/predictions`;
+missing artifacts fail the tests rather than silently skipping verification.
+No FastF1 downloads or full notebook/model training are performed.
+
+Create a separate test environment (Python 3.12 recommended):
+
+```powershell
+uv venv .venv-tests --python 3.12
+uv pip install --python .venv-tests/Scripts/python.exe -r requirements-test.txt
+.venv-tests/Scripts/python.exe -m pytest --html=results/tests/report.html --self-contained-html --junitxml=results/tests/junit.xml --cov=mma3001_f1 --cov-report=term-missing --cov-report=html:results/tests/coverage --cov-report=xml:results/tests/coverage.xml
+```
+
+Alternatively, install `requirements-test.txt` in an existing Python environment
+and run `python -m pytest`. The report command is:
+
+```powershell
+python -m pytest --html=results/tests/report.html --self-contained-html --junitxml=results/tests/junit.xml --cov=mma3001_f1 --cov-report=term-missing --cov-report=html:results/tests/coverage --cov-report=xml:results/tests/coverage.xml
+```
+
+Where PowerShell script execution is enabled, `./scripts/run_tests.ps1` runs the
+same report command using `.venv-tests`; `-Python` selects another interpreter.
+
+Reports are regenerated on each run:
+
+- `results/tests/report.html`: test outcomes, timings, and failure details.
+- `results/tests/junit.xml`: machine-readable test results for CI.
+- `results/tests/coverage/index.html`: source coverage with uncovered lines.
+- `results/tests/coverage.xml`: machine-readable coverage.
+
+Run only function tests with `python -m pytest -m "not artifact"`, or only saved
+holdout checks with `python -m pytest -m artifact`. Passing artifact tests shows
+that saved metrics agree with saved predictions; it does not establish that the
+notebook's training procedure is leakage-free or that a model generalizes to new
+seasons. Coverage measures the Python package, not notebook cells or exporters.
