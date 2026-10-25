@@ -213,6 +213,8 @@ Open `MMA3001_F1_Next_Lap_Prediction.ipynb`, select the environment's Python ker
 
 The 2025 evaluation is already reported. Keep its saved outputs when reviewing the project; do not repeatedly use that season to choose better settings and still describe it as an untouched test.
 
+### Github
+**GitHub Repository:** [View the source code, datasets and project results](https://github.com/adrianliew99/MMA3001-Project-Formula1-Lap-Time-Prediction-Using-Machine-Learning)
 
 ### AI acknowledgement
 LLMs model (Chatgpt 6 Sol, Cursor Pro, Google Gemini3 Plus) was used in the project development, suggesting evaluation, error troubleshooting
