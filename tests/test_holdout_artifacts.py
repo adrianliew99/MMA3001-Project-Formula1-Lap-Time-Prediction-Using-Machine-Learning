@@ -57,7 +57,12 @@ def test_group_reports_match_recomputed_errors(predictions, filename, key):
         Bias_s='mean', RMSE_s=lambda x: np.sqrt(np.mean(x ** 2))).sort_index()
     saved = pd.read_csv(METRICS / filename).set_index(key).sort_index()
     pd.testing.assert_frame_equal(saved[actual.columns], actual, check_dtype=False, rtol=1e-10, atol=1e-10)
-    assert saved.Observations.sum() == len(p)
+    # The saved groupby summaries exclude rows with a missing group label.
+    # Those rows still belong to the overall holdout evaluation, so account
+    # for them explicitly rather than requiring every tyre label to be known.
+    missing_labels = p[key].isna().sum()
+    assert saved.Observations.sum() == p[key].notna().sum()
+    assert saved.Observations.sum() + missing_labels == len(p)
 
 
 def test_metric_verification_table_agrees_with_raw_predictions(predictions):

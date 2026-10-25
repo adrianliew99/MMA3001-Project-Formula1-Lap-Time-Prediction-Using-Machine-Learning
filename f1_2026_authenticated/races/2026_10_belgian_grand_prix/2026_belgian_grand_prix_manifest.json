@@ -1,0 +1,25 @@
+{
+  "status": "failed",
+  "request": {
+    "year": 2026,
+    "event": "Belgian Grand Prix",
+    "session": "R",
+    "drivers": [
+      "ALB",
+      "ALO",
+      "GAS",
+      "HAM",
+      "LEC",
+      "NOR",
+      "OCO",
+      "RUS",
+      "SAI",
+      "STR",
+      "VER"
+    ]
+  },
+  "started_utc": "2026-10-24T14:56:32.452470+00:00",
+  "source_mode": "provider_with_cache",
+  "failed_utc": "2026-10-24T14:57:09.209805+00:00",
+  "error": "ValueError: requested drivers do not all have usable ML pairs or contain unexpected drivers"
+}
