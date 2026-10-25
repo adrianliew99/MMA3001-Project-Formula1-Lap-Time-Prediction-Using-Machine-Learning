@@ -153,11 +153,17 @@ Further analysis found that:
 - Twelve predictions with errors greater than 5 seconds contributed **16.49% of total squared error**. These observations were retained in the overall results.
 - Persistence also had the lowest MAE in the four-event exploratory unseen-circuit experiment: **0.6093 s**, across **3,918 pairs**.
 
+
 #### Model Performance and Comparison
+<img width="1600" height="640" alt="image" src="https://github.com/user-attachments/assets/8a246bd2-567d-4173-b0f0-f4ab9e8d918e" />
+
 <img width="698" height="406" alt="image" src="https://github.com/user-attachments/assets/3314b11b-b8d1-41d6-8963-be49670d1682" />
 
 #### Prediction error graph
 <img width="2976" height="978" alt="image" src="https://github.com/user-attachments/assets/00a3dc38-152b-438a-8b73-c1f386938606" />
+
+#### Residual
+<img width="2340" height="720" alt="image" src="https://github.com/user-attachments/assets/b74d056d-25e9-40de-bcd2-1ce93d5a7603" />
 
 
 ## Project Phase
