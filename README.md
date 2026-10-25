@@ -152,10 +152,17 @@ Further analysis found that:
 - Twelve predictions with errors greater than 5 seconds contributed **16.49% of total squared error**. These observations were retained in the overall results.
 - Persistence also had the lowest MAE in the four-event exploratory unseen-circuit experiment: **0.6093 s**, across **3,918 pairs**.
 
+#### Model Performance and Comparison
+<img width="698" height="406" alt="image" src="https://github.com/user-attachments/assets/3314b11b-b8d1-41d6-8963-be49670d1682" />
+
+#### Prediction error graph
+<img width="2976" height="978" alt="image" src="https://github.com/user-attachments/assets/00a3dc38-152b-438a-8b73-c1f386938606" />
+
+
 ## Project Phase
-Phase 1: Define engineering problem, project objectives and scope
-Phase 2: Dataset export and project framework
-Phase 3: Result, analysis and Improvement
+Phase 1: Define engineering problem, project objectives and scope  
+Phase 2: Dataset export and project framework  
+Phase 3: Result, analysis and Improvement  
 
 ## Version
 Current version: v3.0
@@ -177,7 +184,7 @@ Python 3.12 is recommended. A **virtual environment** keeps this project's insta
 Download or clone the repository, select `v2.2`, and open a terminal in the project folder:
 
 ```bash
-git clone --branch v2.2 https://github.com/adrianliew99/MMA3001-Project-Formula1-Lap-Time-Prediction-Using-Machine-Learning.git
+git clone --branch main https://github.com/adrianliew99/MMA3001-Project-Formula1-Lap-Time-Prediction-Using-Machine-Learning.git
 cd MMA3001-Project-Formula1-Lap-Time-Prediction-Using-Machine-Learning
 python -m venv .venv
 ```
