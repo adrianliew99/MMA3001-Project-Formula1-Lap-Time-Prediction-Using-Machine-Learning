@@ -1,0 +1,16 @@
+{
+  "selected_model": [
+    "A_persistence",
+    "Persistence",
+    "none"
+  ],
+  "selection_metric": "2024 validation MAE",
+  "holdout_year": 2025,
+  "observations": 20662,
+  "scores": {
+    "MAE_s": 0.3862170651437421,
+    "RMSE_s": 0.6798099358511948,
+    "R2_next_lap": 0.9957528727036938,
+    "MAE_delta_s": 0.3862170651437421
+  }
+}

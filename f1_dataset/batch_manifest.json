@@ -1,0 +1,1393 @@
+{
+  "status": "complete",
+  "finished_utc": "2026-10-12T18:04:28.455771+00:00",
+  "selection": [
+    {
+      "year": 2022,
+      "round": 1,
+      "event": "Bahrain Grand Prix"
+    },
+    {
+      "year": 2022,
+      "round": 2,
+      "event": "Saudi Arabian Grand Prix"
+    },
+    {
+      "year": 2022,
+      "round": 3,
+      "event": "Australian Grand Prix"
+    },
+    {
+      "year": 2022,
+      "round": 4,
+      "event": "Emilia Romagna Grand Prix"
+    },
+    {
+      "year": 2022,
+      "round": 5,
+      "event": "Miami Grand Prix"
+    },
+    {
+      "year": 2022,
+      "round": 6,
+      "event": "Spanish Grand Prix"
+    },
+    {
+      "year": 2022,
+      "round": 7,
+      "event": "Monaco Grand Prix"
+    },
+    {
+      "year": 2022,
+      "round": 8,
+      "event": "Azerbaijan Grand Prix"
+    },
+    {
+      "year": 2022,
+      "round": 9,
+      "event": "Canadian Grand Prix"
+    },
+    {
+      "year": 2022,
+      "round": 10,
+      "event": "British Grand Prix"
+    },
+    {
+      "year": 2022,
+      "round": 11,
+      "event": "Austrian Grand Prix"
+    },
+    {
+      "year": 2022,
+      "round": 12,
+      "event": "French Grand Prix"
+    },
+    {
+      "year": 2022,
+      "round": 13,
+      "event": "Hungarian Grand Prix"
+    },
+    {
+      "year": 2022,
+      "round": 14,
+      "event": "Belgian Grand Prix"
+    },
+    {
+      "year": 2022,
+      "round": 15,
+      "event": "Dutch Grand Prix"
+    },
+    {
+      "year": 2022,
+      "round": 16,
+      "event": "Italian Grand Prix"
+    },
+    {
+      "year": 2022,
+      "round": 17,
+      "event": "Singapore Grand Prix"
+    },
+    {
+      "year": 2022,
+      "round": 18,
+      "event": "Japanese Grand Prix"
+    },
+    {
+      "year": 2022,
+      "round": 19,
+      "event": "United States Grand Prix"
+    },
+    {
+      "year": 2022,
+      "round": 20,
+      "event": "Mexico City Grand Prix"
+    },
+    {
+      "year": 2022,
+      "round": 21,
+      "event": "S\u00e3o Paulo Grand Prix"
+    },
+    {
+      "year": 2022,
+      "round": 22,
+      "event": "Abu Dhabi Grand Prix"
+    },
+    {
+      "year": 2023,
+      "round": 1,
+      "event": "Bahrain Grand Prix"
+    },
+    {
+      "year": 2023,
+      "round": 2,
+      "event": "Saudi Arabian Grand Prix"
+    },
+    {
+      "year": 2023,
+      "round": 3,
+      "event": "Australian Grand Prix"
+    },
+    {
+      "year": 2023,
+      "round": 4,
+      "event": "Azerbaijan Grand Prix"
+    },
+    {
+      "year": 2023,
+      "round": 5,
+      "event": "Miami Grand Prix"
+    },
+    {
+      "year": 2023,
+      "round": 6,
+      "event": "Monaco Grand Prix"
+    },
+    {
+      "year": 2023,
+      "round": 7,
+      "event": "Spanish Grand Prix"
+    },
+    {
+      "year": 2023,
+      "round": 8,
+      "event": "Canadian Grand Prix"
+    },
+    {
+      "year": 2023,
+      "round": 9,
+      "event": "Austrian Grand Prix"
+    },
+    {
+      "year": 2023,
+      "round": 10,
+      "event": "British Grand Prix"
+    },
+    {
+      "year": 2023,
+      "round": 11,
+      "event": "Hungarian Grand Prix"
+    },
+    {
+      "year": 2023,
+      "round": 12,
+      "event": "Belgian Grand Prix"
+    },
+    {
+      "year": 2023,
+      "round": 13,
+      "event": "Dutch Grand Prix"
+    },
+    {
+      "year": 2023,
+      "round": 14,
+      "event": "Italian Grand Prix"
+    },
+    {
+      "year": 2023,
+      "round": 15,
+      "event": "Singapore Grand Prix"
+    },
+    {
+      "year": 2023,
+      "round": 16,
+      "event": "Japanese Grand Prix"
+    },
+    {
+      "year": 2023,
+      "round": 17,
+      "event": "Qatar Grand Prix"
+    },
+    {
+      "year": 2023,
+      "round": 18,
+      "event": "United States Grand Prix"
+    },
+    {
+      "year": 2023,
+      "round": 19,
+      "event": "Mexico City Grand Prix"
+    },
+    {
+      "year": 2023,
+      "round": 20,
+      "event": "S\u00e3o Paulo Grand Prix"
+    },
+    {
+      "year": 2023,
+      "round": 21,
+      "event": "Las Vegas Grand Prix"
+    },
+    {
+      "year": 2023,
+      "round": 22,
+      "event": "Abu Dhabi Grand Prix"
+    },
+    {
+      "year": 2024,
+      "round": 1,
+      "event": "Bahrain Grand Prix"
+    },
+    {
+      "year": 2024,
+      "round": 2,
+      "event": "Saudi Arabian Grand Prix"
+    },
+    {
+      "year": 2024,
+      "round": 3,
+      "event": "Australian Grand Prix"
+    },
+    {
+      "year": 2024,
+      "round": 4,
+      "event": "Japanese Grand Prix"
+    },
+    {
+      "year": 2024,
+      "round": 5,
+      "event": "Chinese Grand Prix"
+    },
+    {
+      "year": 2024,
+      "round": 6,
+      "event": "Miami Grand Prix"
+    },
+    {
+      "year": 2024,
+      "round": 7,
+      "event": "Emilia Romagna Grand Prix"
+    },
+    {
+      "year": 2024,
+      "round": 8,
+      "event": "Monaco Grand Prix"
+    },
+    {
+      "year": 2024,
+      "round": 9,
+      "event": "Canadian Grand Prix"
+    },
+    {
+      "year": 2024,
+      "round": 10,
+      "event": "Spanish Grand Prix"
+    },
+    {
+      "year": 2024,
+      "round": 11,
+      "event": "Austrian Grand Prix"
+    },
+    {
+      "year": 2024,
+      "round": 12,
+      "event": "British Grand Prix"
+    },
+    {
+      "year": 2024,
+      "round": 13,
+      "event": "Hungarian Grand Prix"
+    },
+    {
+      "year": 2024,
+      "round": 14,
+      "event": "Belgian Grand Prix"
+    },
+    {
+      "year": 2024,
+      "round": 15,
+      "event": "Dutch Grand Prix"
+    },
+    {
+      "year": 2024,
+      "round": 16,
+      "event": "Italian Grand Prix"
+    },
+    {
+      "year": 2024,
+      "round": 17,
+      "event": "Azerbaijan Grand Prix"
+    },
+    {
+      "year": 2024,
+      "round": 18,
+      "event": "Singapore Grand Prix"
+    },
+    {
+      "year": 2024,
+      "round": 19,
+      "event": "United States Grand Prix"
+    },
+    {
+      "year": 2024,
+      "round": 20,
+      "event": "Mexico City Grand Prix"
+    },
+    {
+      "year": 2024,
+      "round": 21,
+      "event": "S\u00e3o Paulo Grand Prix"
+    },
+    {
+      "year": 2024,
+      "round": 22,
+      "event": "Las Vegas Grand Prix"
+    },
+    {
+      "year": 2024,
+      "round": 23,
+      "event": "Qatar Grand Prix"
+    },
+    {
+      "year": 2024,
+      "round": 24,
+      "event": "Abu Dhabi Grand Prix"
+    },
+    {
+      "year": 2025,
+      "round": 1,
+      "event": "Australian Grand Prix"
+    },
+    {
+      "year": 2025,
+      "round": 2,
+      "event": "Chinese Grand Prix"
+    },
+    {
+      "year": 2025,
+      "round": 3,
+      "event": "Japanese Grand Prix"
+    },
+    {
+      "year": 2025,
+      "round": 4,
+      "event": "Bahrain Grand Prix"
+    },
+    {
+      "year": 2025,
+      "round": 5,
+      "event": "Saudi Arabian Grand Prix"
+    },
+    {
+      "year": 2025,
+      "round": 6,
+      "event": "Miami Grand Prix"
+    },
+    {
+      "year": 2025,
+      "round": 7,
+      "event": "Emilia Romagna Grand Prix"
+    },
+    {
+      "year": 2025,
+      "round": 8,
+      "event": "Monaco Grand Prix"
+    },
+    {
+      "year": 2025,
+      "round": 9,
+      "event": "Spanish Grand Prix"
+    },
+    {
+      "year": 2025,
+      "round": 10,
+      "event": "Canadian Grand Prix"
+    },
+    {
+      "year": 2025,
+      "round": 11,
+      "event": "Austrian Grand Prix"
+    },
+    {
+      "year": 2025,
+      "round": 12,
+      "event": "British Grand Prix"
+    },
+    {
+      "year": 2025,
+      "round": 13,
+      "event": "Belgian Grand Prix"
+    },
+    {
+      "year": 2025,
+      "round": 14,
+      "event": "Hungarian Grand Prix"
+    },
+    {
+      "year": 2025,
+      "round": 15,
+      "event": "Dutch Grand Prix"
+    },
+    {
+      "year": 2025,
+      "round": 16,
+      "event": "Italian Grand Prix"
+    },
+    {
+      "year": 2025,
+      "round": 17,
+      "event": "Azerbaijan Grand Prix"
+    },
+    {
+      "year": 2025,
+      "round": 18,
+      "event": "Singapore Grand Prix"
+    },
+    {
+      "year": 2025,
+      "round": 19,
+      "event": "United States Grand Prix"
+    },
+    {
+      "year": 2025,
+      "round": 20,
+      "event": "Mexico City Grand Prix"
+    },
+    {
+      "year": 2025,
+      "round": 21,
+      "event": "S\u00e3o Paulo Grand Prix"
+    },
+    {
+      "year": 2025,
+      "round": 22,
+      "event": "Las Vegas Grand Prix"
+    },
+    {
+      "year": 2025,
+      "round": 23,
+      "event": "Qatar Grand Prix"
+    },
+    {
+      "year": 2025,
+      "round": 24,
+      "event": "Abu Dhabi Grand Prix"
+    }
+  ],
+  "drivers": [],
+  "completed_sessions": 92,
+  "requested_sessions": 92,
+  "combined_ml_rows": 77928,
+  "merge_error": null,
+  "records": [
+    {
+      "year": 2022,
+      "round": 1,
+      "event": "Bahrain Grand Prix",
+      "Status": "success",
+      "MLRows": 771,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_01_bahrain_grand_prix\\2022_bahrain_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_01_bahrain_grand_prix"
+    },
+    {
+      "year": 2022,
+      "round": 2,
+      "event": "Saudi Arabian Grand Prix",
+      "Status": "success",
+      "MLRows": 547,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_02_saudi_arabian_grand_prix\\2022_saudi_arabian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_02_saudi_arabian_grand_prix"
+    },
+    {
+      "year": 2022,
+      "round": 3,
+      "event": "Australian Grand Prix",
+      "Status": "success",
+      "MLRows": 732,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_03_australian_grand_prix\\2022_australian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_03_australian_grand_prix"
+    },
+    {
+      "year": 2022,
+      "round": 4,
+      "event": "Emilia Romagna Grand Prix",
+      "Status": "success",
+      "MLRows": 888,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_04_emilia_romagna_grand_prix\\2022_emilia_romagna_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_04_emilia_romagna_grand_prix"
+    },
+    {
+      "year": 2022,
+      "round": 5,
+      "event": "Miami Grand Prix",
+      "Status": "success",
+      "MLRows": 705,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_05_miami_grand_prix\\2022_miami_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_05_miami_grand_prix"
+    },
+    {
+      "year": 2022,
+      "round": 6,
+      "event": "Spanish Grand Prix",
+      "Status": "success",
+      "MLRows": 957,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_06_spanish_grand_prix\\2022_spanish_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_06_spanish_grand_prix"
+    },
+    {
+      "year": 2022,
+      "round": 7,
+      "event": "Monaco Grand Prix",
+      "Status": "success",
+      "MLRows": 688,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_07_monaco_grand_prix\\2022_monaco_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_07_monaco_grand_prix"
+    },
+    {
+      "year": 2022,
+      "round": 8,
+      "event": "Azerbaijan Grand Prix",
+      "Status": "success",
+      "MLRows": 651,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_08_azerbaijan_grand_prix\\2022_azerbaijan_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_08_azerbaijan_grand_prix"
+    },
+    {
+      "year": 2022,
+      "round": 9,
+      "event": "Canadian Grand Prix",
+      "Status": "success",
+      "MLRows": 921,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_09_canadian_grand_prix\\2022_canadian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_09_canadian_grand_prix"
+    },
+    {
+      "year": 2022,
+      "round": 10,
+      "event": "British Grand Prix",
+      "Status": "success",
+      "MLRows": 589,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_10_british_grand_prix\\2022_british_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_10_british_grand_prix"
+    },
+    {
+      "year": 2022,
+      "round": 11,
+      "event": "Austrian Grand Prix",
+      "Status": "success",
+      "MLRows": 1054,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_11_austrian_grand_prix\\2022_austrian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_11_austrian_grand_prix"
+    },
+    {
+      "year": 2022,
+      "round": 12,
+      "event": "French Grand Prix",
+      "Status": "success",
+      "MLRows": 697,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_12_french_grand_prix\\2022_french_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_12_french_grand_prix"
+    },
+    {
+      "year": 2022,
+      "round": 13,
+      "event": "Hungarian Grand Prix",
+      "Status": "success",
+      "MLRows": 1009,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_13_hungarian_grand_prix\\2022_hungarian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_13_hungarian_grand_prix"
+    },
+    {
+      "year": 2022,
+      "round": 14,
+      "event": "Belgian Grand Prix",
+      "Status": "success",
+      "MLRows": 576,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_14_belgian_grand_prix\\2022_belgian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_14_belgian_grand_prix"
+    },
+    {
+      "year": 2022,
+      "round": 15,
+      "event": "Dutch Grand Prix",
+      "Status": "success",
+      "MLRows": 924,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_15_dutch_grand_prix\\2022_dutch_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_15_dutch_grand_prix"
+    },
+    {
+      "year": 2022,
+      "round": 16,
+      "event": "Italian Grand Prix",
+      "Status": "success",
+      "MLRows": 692,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_16_italian_grand_prix\\2022_italian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_16_italian_grand_prix"
+    },
+    {
+      "year": 2022,
+      "round": 17,
+      "event": "Singapore Grand Prix",
+      "Status": "success",
+      "MLRows": 523,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_17_singapore_grand_prix\\2022_singapore_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_17_singapore_grand_prix"
+    },
+    {
+      "year": 2022,
+      "round": 18,
+      "event": "Japanese Grand Prix",
+      "Status": "success",
+      "MLRows": 333,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_18_japanese_grand_prix\\2022_japanese_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_18_japanese_grand_prix"
+    },
+    {
+      "year": 2022,
+      "round": 19,
+      "event": "United States Grand Prix",
+      "Status": "success",
+      "MLRows": 708,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_19_united_states_grand_prix\\2022_united_states_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_19_united_states_grand_prix"
+    },
+    {
+      "year": 2022,
+      "round": 20,
+      "event": "Mexico City Grand Prix",
+      "Status": "success",
+      "MLRows": 1217,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_20_mexico_city_grand_prix\\2022_mexico_city_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_20_mexico_city_grand_prix"
+    },
+    {
+      "year": 2022,
+      "round": 21,
+      "event": "S\u00e3o Paulo Grand Prix",
+      "Status": "success",
+      "MLRows": 838,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_21_sao_paulo_grand_prix\\2022_s_o_paulo_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_21_sao_paulo_grand_prix"
+    },
+    {
+      "year": 2022,
+      "round": 22,
+      "event": "Abu Dhabi Grand Prix",
+      "Status": "success",
+      "MLRows": 950,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_22_abu_dhabi_grand_prix\\2022_abu_dhabi_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2022_22_abu_dhabi_grand_prix"
+    },
+    {
+      "year": 2023,
+      "round": 1,
+      "event": "Bahrain Grand Prix",
+      "Status": "success",
+      "MLRows": 810,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_01_bahrain_grand_prix\\2023_bahrain_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_01_bahrain_grand_prix"
+    },
+    {
+      "year": 2023,
+      "round": 2,
+      "event": "Saudi Arabian Grand Prix",
+      "Status": "success",
+      "MLRows": 778,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_02_saudi_arabian_grand_prix\\2023_saudi_arabian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_02_saudi_arabian_grand_prix"
+    },
+    {
+      "year": 2023,
+      "round": 3,
+      "event": "Australian Grand Prix",
+      "Status": "success",
+      "MLRows": 700,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_03_australian_grand_prix\\2023_australian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_03_australian_grand_prix"
+    },
+    {
+      "year": 2023,
+      "round": 4,
+      "event": "Azerbaijan Grand Prix",
+      "Status": "success",
+      "MLRows": 724,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_04_azerbaijan_grand_prix\\2023_azerbaijan_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_04_azerbaijan_grand_prix"
+    },
+    {
+      "year": 2023,
+      "round": 5,
+      "event": "Miami Grand Prix",
+      "Status": "success",
+      "MLRows": 1039,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_05_miami_grand_prix\\2023_miami_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_05_miami_grand_prix"
+    },
+    {
+      "year": 2023,
+      "round": 6,
+      "event": "Monaco Grand Prix",
+      "Status": "success",
+      "MLRows": 1132,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_06_monaco_grand_prix\\2023_monaco_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_06_monaco_grand_prix"
+    },
+    {
+      "year": 2023,
+      "round": 7,
+      "event": "Spanish Grand Prix",
+      "Status": "success",
+      "MLRows": 1145,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_07_spanish_grand_prix\\2023_spanish_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_07_spanish_grand_prix"
+    },
+    {
+      "year": 2023,
+      "round": 8,
+      "event": "Canadian Grand Prix",
+      "Status": "success",
+      "MLRows": 969,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_08_canadian_grand_prix\\2023_canadian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_08_canadian_grand_prix"
+    },
+    {
+      "year": 2023,
+      "round": 9,
+      "event": "Austrian Grand Prix",
+      "Status": "success",
+      "MLRows": 1102,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_09_austrian_grand_prix\\2023_austrian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_09_austrian_grand_prix"
+    },
+    {
+      "year": 2023,
+      "round": 10,
+      "event": "British Grand Prix",
+      "Status": "success",
+      "MLRows": 754,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_10_british_grand_prix\\2023_british_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_10_british_grand_prix"
+    },
+    {
+      "year": 2023,
+      "round": 11,
+      "event": "Hungarian Grand Prix",
+      "Status": "success",
+      "MLRows": 1069,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_11_hungarian_grand_prix\\2023_hungarian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_11_hungarian_grand_prix"
+    },
+    {
+      "year": 2023,
+      "round": 12,
+      "event": "Belgian Grand Prix",
+      "Status": "success",
+      "MLRows": 611,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_12_belgian_grand_prix\\2023_belgian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_12_belgian_grand_prix"
+    },
+    {
+      "year": 2023,
+      "round": 13,
+      "event": "Dutch Grand Prix",
+      "Status": "success",
+      "MLRows": 900,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_13_dutch_grand_prix\\2023_dutch_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_13_dutch_grand_prix"
+    },
+    {
+      "year": 2023,
+      "round": 14,
+      "event": "Italian Grand Prix",
+      "Status": "success",
+      "MLRows": 834,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_14_italian_grand_prix\\2023_italian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_14_italian_grand_prix"
+    },
+    {
+      "year": 2023,
+      "round": 15,
+      "event": "Singapore Grand Prix",
+      "Status": "success",
+      "MLRows": 737,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_15_singapore_grand_prix\\2023_singapore_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_15_singapore_grand_prix"
+    },
+    {
+      "year": 2023,
+      "round": 16,
+      "event": "Japanese Grand Prix",
+      "Status": "success",
+      "MLRows": 618,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_16_japanese_grand_prix\\2023_japanese_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_16_japanese_grand_prix"
+    },
+    {
+      "year": 2023,
+      "round": 17,
+      "event": "Qatar Grand Prix",
+      "Status": "success",
+      "MLRows": 714,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_17_qatar_grand_prix\\2023_qatar_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_17_qatar_grand_prix"
+    },
+    {
+      "year": 2023,
+      "round": 18,
+      "event": "United States Grand Prix",
+      "Status": "success",
+      "MLRows": 857,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_18_united_states_grand_prix\\2023_united_states_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_18_united_states_grand_prix"
+    },
+    {
+      "year": 2023,
+      "round": 19,
+      "event": "Mexico City Grand Prix",
+      "Status": "success",
+      "MLRows": 946,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_19_mexico_city_grand_prix\\2023_mexico_city_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_19_mexico_city_grand_prix"
+    },
+    {
+      "year": 2023,
+      "round": 20,
+      "event": "S\u00e3o Paulo Grand Prix",
+      "Status": "success",
+      "MLRows": 936,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_20_sao_paulo_grand_prix\\2023_s_o_paulo_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_20_sao_paulo_grand_prix"
+    },
+    {
+      "year": 2023,
+      "round": 21,
+      "event": "Las Vegas Grand Prix",
+      "Status": "success",
+      "MLRows": 520,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_21_las_vegas_grand_prix\\2023_las_vegas_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_21_las_vegas_grand_prix"
+    },
+    {
+      "year": 2023,
+      "round": 22,
+      "event": "Abu Dhabi Grand Prix",
+      "Status": "success",
+      "MLRows": 1007,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_22_abu_dhabi_grand_prix\\2023_abu_dhabi_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2023_22_abu_dhabi_grand_prix"
+    },
+    {
+      "year": 2024,
+      "round": 1,
+      "event": "Bahrain Grand Prix",
+      "Status": "success",
+      "MLRows": 931,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_01_bahrain_grand_prix\\2024_bahrain_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_01_bahrain_grand_prix"
+    },
+    {
+      "year": 2024,
+      "round": 2,
+      "event": "Saudi Arabian Grand Prix",
+      "Status": "success",
+      "MLRows": 760,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_02_saudi_arabian_grand_prix\\2024_saudi_arabian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_02_saudi_arabian_grand_prix"
+    },
+    {
+      "year": 2024,
+      "round": 3,
+      "event": "Australian Grand Prix",
+      "Status": "success",
+      "MLRows": 785,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_03_australian_grand_prix\\2024_australian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_03_australian_grand_prix"
+    },
+    {
+      "year": 2024,
+      "round": 4,
+      "event": "Japanese Grand Prix",
+      "Status": "success",
+      "MLRows": 696,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_04_japanese_grand_prix\\2024_japanese_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_04_japanese_grand_prix"
+    },
+    {
+      "year": 2024,
+      "round": 5,
+      "event": "Chinese Grand Prix",
+      "Status": "success",
+      "MLRows": 684,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_05_chinese_grand_prix\\2024_chinese_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_05_chinese_grand_prix"
+    },
+    {
+      "year": 2024,
+      "round": 6,
+      "event": "Miami Grand Prix",
+      "Status": "success",
+      "MLRows": 865,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_06_miami_grand_prix\\2024_miami_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_06_miami_grand_prix"
+    },
+    {
+      "year": 2024,
+      "round": 7,
+      "event": "Emilia Romagna Grand Prix",
+      "Status": "success",
+      "MLRows": 1118,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_07_emilia_romagna_grand_prix\\2024_emilia_romagna_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_07_emilia_romagna_grand_prix"
+    },
+    {
+      "year": 2024,
+      "round": 8,
+      "event": "Monaco Grand Prix",
+      "Status": "success",
+      "MLRows": 1134,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_08_monaco_grand_prix\\2024_monaco_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_08_monaco_grand_prix"
+    },
+    {
+      "year": 2024,
+      "round": 9,
+      "event": "Canadian Grand Prix",
+      "Status": "success",
+      "MLRows": 773,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_09_canadian_grand_prix\\2024_canadian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_09_canadian_grand_prix"
+    },
+    {
+      "year": 2024,
+      "round": 10,
+      "event": "Spanish Grand Prix",
+      "Status": "success",
+      "MLRows": 1144,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_10_spanish_grand_prix\\2024_spanish_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_10_spanish_grand_prix"
+    },
+    {
+      "year": 2024,
+      "round": 11,
+      "event": "Austrian Grand Prix",
+      "Status": "success",
+      "MLRows": 1152,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_11_austrian_grand_prix\\2024_austrian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_11_austrian_grand_prix"
+    },
+    {
+      "year": 2024,
+      "round": 12,
+      "event": "British Grand Prix",
+      "Status": "success",
+      "MLRows": 787,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_12_british_grand_prix\\2024_british_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_12_british_grand_prix"
+    },
+    {
+      "year": 2024,
+      "round": 13,
+      "event": "Hungarian Grand Prix",
+      "Status": "success",
+      "MLRows": 1155,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_13_hungarian_grand_prix\\2024_hungarian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_13_hungarian_grand_prix"
+    },
+    {
+      "year": 2024,
+      "round": 14,
+      "event": "Belgian Grand Prix",
+      "Status": "success",
+      "MLRows": 663,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_14_belgian_grand_prix\\2024_belgian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_14_belgian_grand_prix"
+    },
+    {
+      "year": 2024,
+      "round": 15,
+      "event": "Dutch Grand Prix",
+      "Status": "success",
+      "MLRows": 1308,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_15_dutch_grand_prix\\2024_dutch_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_15_dutch_grand_prix"
+    },
+    {
+      "year": 2024,
+      "round": 16,
+      "event": "Italian Grand Prix",
+      "Status": "success",
+      "MLRows": 877,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_16_italian_grand_prix\\2024_italian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_16_italian_grand_prix"
+    },
+    {
+      "year": 2024,
+      "round": 17,
+      "event": "Azerbaijan Grand Prix",
+      "Status": "success",
+      "MLRows": 800,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_17_azerbaijan_grand_prix\\2024_azerbaijan_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_17_azerbaijan_grand_prix"
+    },
+    {
+      "year": 2024,
+      "round": 18,
+      "event": "Singapore Grand Prix",
+      "Status": "success",
+      "MLRows": 1066,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_18_singapore_grand_prix\\2024_singapore_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_18_singapore_grand_prix"
+    },
+    {
+      "year": 2024,
+      "round": 19,
+      "event": "United States Grand Prix",
+      "Status": "success",
+      "MLRows": 802,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_19_united_states_grand_prix\\2024_united_states_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_19_united_states_grand_prix"
+    },
+    {
+      "year": 2024,
+      "round": 20,
+      "event": "Mexico City Grand Prix",
+      "Status": "success",
+      "MLRows": 1021,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_20_mexico_city_grand_prix\\2024_mexico_city_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_20_mexico_city_grand_prix"
+    },
+    {
+      "year": 2024,
+      "round": 21,
+      "event": "S\u00e3o Paulo Grand Prix",
+      "Status": "success",
+      "MLRows": 668,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_21_sao_paulo_grand_prix\\2024_s_o_paulo_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_21_sao_paulo_grand_prix"
+    },
+    {
+      "year": 2024,
+      "round": 22,
+      "event": "Las Vegas Grand Prix",
+      "Status": "success",
+      "MLRows": 760,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_22_las_vegas_grand_prix\\2024_las_vegas_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_22_las_vegas_grand_prix"
+    },
+    {
+      "year": 2024,
+      "round": 23,
+      "event": "Qatar Grand Prix",
+      "Status": "success",
+      "MLRows": 624,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_23_qatar_grand_prix\\2024_qatar_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_23_qatar_grand_prix"
+    },
+    {
+      "year": 2024,
+      "round": 24,
+      "event": "Abu Dhabi Grand Prix",
+      "Status": "success",
+      "MLRows": 821,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_24_abu_dhabi_grand_prix\\2024_abu_dhabi_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2024_24_abu_dhabi_grand_prix"
+    },
+    {
+      "year": 2025,
+      "round": 1,
+      "event": "Australian Grand Prix",
+      "Status": "success",
+      "MLRows": 494,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_01_australian_grand_prix\\2025_australian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_01_australian_grand_prix"
+    },
+    {
+      "year": 2025,
+      "round": 2,
+      "event": "Chinese Grand Prix",
+      "Status": "success",
+      "MLRows": 876,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_02_chinese_grand_prix\\2025_chinese_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_02_chinese_grand_prix"
+    },
+    {
+      "year": 2025,
+      "round": 3,
+      "event": "Japanese Grand Prix",
+      "Status": "success",
+      "MLRows": 956,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_03_japanese_grand_prix\\2025_japanese_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_03_japanese_grand_prix"
+    },
+    {
+      "year": 2025,
+      "round": 4,
+      "event": "Bahrain Grand Prix",
+      "Status": "success",
+      "MLRows": 885,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_04_bahrain_grand_prix\\2025_bahrain_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_04_bahrain_grand_prix"
+    },
+    {
+      "year": 2025,
+      "round": 5,
+      "event": "Saudi Arabian Grand Prix",
+      "Status": "success",
+      "MLRows": 776,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_05_saudi_arabian_grand_prix\\2025_saudi_arabian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_05_saudi_arabian_grand_prix"
+    },
+    {
+      "year": 2025,
+      "round": 6,
+      "event": "Miami Grand Prix",
+      "Status": "success",
+      "MLRows": 493,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_06_miami_grand_prix\\2025_miami_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_06_miami_grand_prix"
+    },
+    {
+      "year": 2025,
+      "round": 7,
+      "event": "Emilia Romagna Grand Prix",
+      "Status": "success",
+      "MLRows": 875,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_07_emilia_romagna_grand_prix\\2025_emilia_romagna_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_07_emilia_romagna_grand_prix"
+    },
+    {
+      "year": 2025,
+      "round": 8,
+      "event": "Monaco Grand Prix",
+      "Status": "success",
+      "MLRows": 1088,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_08_monaco_grand_prix\\2025_monaco_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_08_monaco_grand_prix"
+    },
+    {
+      "year": 2025,
+      "round": 9,
+      "event": "Spanish Grand Prix",
+      "Status": "success",
+      "MLRows": 914,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_09_spanish_grand_prix\\2025_spanish_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_09_spanish_grand_prix"
+    },
+    {
+      "year": 2025,
+      "round": 10,
+      "event": "Canadian Grand Prix",
+      "Status": "success",
+      "MLRows": 1097,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_10_canadian_grand_prix\\2025_canadian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_10_canadian_grand_prix"
+    },
+    {
+      "year": 2025,
+      "round": 11,
+      "event": "Austrian Grand Prix",
+      "Status": "success",
+      "MLRows": 934,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_11_austrian_grand_prix\\2025_austrian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_11_austrian_grand_prix"
+    },
+    {
+      "year": 2025,
+      "round": 12,
+      "event": "British Grand Prix",
+      "Status": "success",
+      "MLRows": 374,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_12_british_grand_prix\\2025_british_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_12_british_grand_prix"
+    },
+    {
+      "year": 2025,
+      "round": 13,
+      "event": "Belgian Grand Prix",
+      "Status": "success",
+      "MLRows": 701,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_13_belgian_grand_prix\\2025_belgian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_13_belgian_grand_prix"
+    },
+    {
+      "year": 2025,
+      "round": 14,
+      "event": "Hungarian Grand Prix",
+      "Status": "success",
+      "MLRows": 1240,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_14_hungarian_grand_prix\\2025_hungarian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_14_hungarian_grand_prix"
+    },
+    {
+      "year": 2025,
+      "round": 15,
+      "event": "Dutch Grand Prix",
+      "Status": "success",
+      "MLRows": 886,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_15_dutch_grand_prix\\2025_dutch_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_15_dutch_grand_prix"
+    },
+    {
+      "year": 2025,
+      "round": 16,
+      "event": "Italian Grand Prix",
+      "Status": "success",
+      "MLRows": 844,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_16_italian_grand_prix\\2025_italian_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_16_italian_grand_prix"
+    },
+    {
+      "year": 2025,
+      "round": 17,
+      "event": "Azerbaijan Grand Prix",
+      "Status": "success",
+      "MLRows": 725,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_17_azerbaijan_grand_prix\\2025_azerbaijan_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_17_azerbaijan_grand_prix"
+    },
+    {
+      "year": 2025,
+      "round": 18,
+      "event": "Singapore Grand Prix",
+      "Status": "success",
+      "MLRows": 1044,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_18_singapore_grand_prix\\2025_singapore_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_18_singapore_grand_prix"
+    },
+    {
+      "year": 2025,
+      "round": 19,
+      "event": "United States Grand Prix",
+      "Status": "success",
+      "MLRows": 852,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_19_united_states_grand_prix\\2025_united_states_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_19_united_states_grand_prix"
+    },
+    {
+      "year": 2025,
+      "round": 20,
+      "event": "Mexico City Grand Prix",
+      "Status": "success",
+      "MLRows": 1019,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_20_mexico_city_grand_prix\\2025_mexico_city_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_20_mexico_city_grand_prix"
+    },
+    {
+      "year": 2025,
+      "round": 21,
+      "event": "S\u00e3o Paulo Grand Prix",
+      "Status": "success",
+      "MLRows": 981,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_21_sao_paulo_grand_prix\\2025_s_o_paulo_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_21_sao_paulo_grand_prix"
+    },
+    {
+      "year": 2025,
+      "round": 22,
+      "event": "Las Vegas Grand Prix",
+      "Status": "success",
+      "MLRows": 712,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_22_las_vegas_grand_prix\\2025_las_vegas_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_22_las_vegas_grand_prix"
+    },
+    {
+      "year": 2025,
+      "round": 23,
+      "event": "Qatar Grand Prix",
+      "Status": "success",
+      "MLRows": 861,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_23_qatar_grand_prix\\2025_qatar_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_23_qatar_grand_prix"
+    },
+    {
+      "year": 2025,
+      "round": 24,
+      "event": "Abu Dhabi Grand Prix",
+      "Status": "success",
+      "MLRows": 1035,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_24_abu_dhabi_grand_prix\\2025_abu_dhabi_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_dataset\\races\\2025_24_abu_dhabi_grand_prix"
+    }
+  ]
+}

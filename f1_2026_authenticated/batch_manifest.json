@@ -1,0 +1,115 @@
+{
+  "status": "incomplete",
+  "finished_utc": "2026-10-24T14:57:59.909264+00:00",
+  "selection": [
+    {
+      "year": 2026,
+      "round": 3,
+      "event": "Japanese Grand Prix"
+    },
+    {
+      "year": 2026,
+      "round": 4,
+      "event": "Miami Grand Prix"
+    },
+    {
+      "year": 2026,
+      "round": 6,
+      "event": "Monaco Grand Prix"
+    },
+    {
+      "year": 2026,
+      "round": 9,
+      "event": "British Grand Prix"
+    },
+    {
+      "year": 2026,
+      "round": 10,
+      "event": "Belgian Grand Prix"
+    },
+    {
+      "year": 2026,
+      "round": 17,
+      "event": "Singapore Grand Prix"
+    }
+  ],
+  "drivers": [
+    "ALB",
+    "ALO",
+    "GAS",
+    "HAM",
+    "LEC",
+    "NOR",
+    "OCO",
+    "RUS",
+    "SAI",
+    "STR",
+    "VER"
+  ],
+  "completed_sessions": 4,
+  "requested_sessions": 6,
+  "combined_ml_rows": 1704,
+  "merge_error": null,
+  "records": [
+    {
+      "year": 2026,
+      "round": 3,
+      "event": "Japanese Grand Prix",
+      "Status": "success",
+      "MLRows": 436,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_2026_authenticated\\races\\2026_03_japanese_grand_prix\\2026_japanese_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_2026_authenticated\\races\\2026_03_japanese_grand_prix"
+    },
+    {
+      "year": 2026,
+      "round": 4,
+      "event": "Miami Grand Prix",
+      "Status": "success",
+      "MLRows": 384,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_2026_authenticated\\races\\2026_04_miami_grand_prix\\2026_miami_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_2026_authenticated\\races\\2026_04_miami_grand_prix"
+    },
+    {
+      "year": 2026,
+      "round": 6,
+      "event": "Monaco Grand Prix",
+      "Status": "failed",
+      "MLRows": 0,
+      "Reason": "extractor exit 1; manifest status is not complete",
+      "CSV": "",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_2026_authenticated\\races\\2026_06_monaco_grand_prix"
+    },
+    {
+      "year": 2026,
+      "round": 9,
+      "event": "British Grand Prix",
+      "Status": "success",
+      "MLRows": 374,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_2026_authenticated\\races\\2026_09_british_grand_prix\\2026_british_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_2026_authenticated\\races\\2026_09_british_grand_prix"
+    },
+    {
+      "year": 2026,
+      "round": 10,
+      "event": "Belgian Grand Prix",
+      "Status": "failed",
+      "MLRows": 0,
+      "Reason": "extractor exit 1; manifest status is not complete",
+      "CSV": "",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_2026_authenticated\\races\\2026_10_belgian_grand_prix"
+    },
+    {
+      "year": 2026,
+      "round": 17,
+      "event": "Singapore Grand Prix",
+      "Status": "success",
+      "MLRows": 510,
+      "Reason": "verified complete export",
+      "CSV": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_2026_authenticated\\races\\2026_17_singapore_grand_prix\\2026_singapore_grand_prix_next_lap_ml.csv",
+      "Folder": "C:\\Users\\Admin\\Documents\\mmaproject\\f1_2026_authenticated\\races\\2026_17_singapore_grand_prix"
+    }
+  ]
+}

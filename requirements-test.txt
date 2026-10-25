@@ -1,0 +1,6 @@
+numpy>=1.26,<3
+pandas>=2.2,<3
+scikit-learn>=1.6,<1.9
+pytest>=8,<10
+pytest-html>=4,<5
+pytest-cov>=6,<8

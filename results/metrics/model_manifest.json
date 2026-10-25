@@ -1,0 +1,26 @@
+{
+  "project": "MMA3001 F1 conditional next-clean-lap prediction",
+  "selected_from": "validation only",
+  "selected_key": [
+    "A_persistence",
+    "Persistence",
+    "none"
+  ],
+  "seed": 42,
+  "train_years": [
+    2022,
+    2023
+  ],
+  "validation_years": [
+    2024
+  ],
+  "test_years": [
+    2025
+  ],
+  "final_test_executed": false,
+  "python": "3.12.10",
+  "pandas": "2.3.3",
+  "sklearn": "1.8.0",
+  "validation_mae_s": 0.46450673085911937,
+  "feature_availability_warning": false
+}

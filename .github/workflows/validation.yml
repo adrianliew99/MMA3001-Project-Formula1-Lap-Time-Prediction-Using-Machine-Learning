@@ -1,0 +1,37 @@
+name: Tests and source documentation
+
+on: [push, pull_request, workflow_dispatch]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements*.txt
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt -r requirements-test.txt -r requirements-docs.txt
+      - name: Run offline tests and create reports
+        run: >-
+          python -m pytest
+          --html=results/tests/report.html --self-contained-html
+          --junitxml=results/tests/junit.xml
+          --cov=mma3001_f1 --cov-report=term-missing
+          --cov-report=html:results/tests/coverage
+          --cov-report=xml:results/tests/coverage.xml
+      - name: Build HTML source documentation
+        run: python scripts/build_docs.py
+      - name: Preserve reports and documentation
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: submission-evidence
+          path: |
+            results/tests/
+            docs/

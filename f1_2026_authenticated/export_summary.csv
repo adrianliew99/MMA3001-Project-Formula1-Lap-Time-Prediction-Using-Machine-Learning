@@ -1,0 +1,7 @@
+year,round,event,Status,MLRows,Reason,CSV,Folder
+2026,3,Japanese Grand Prix,success,436,verified complete export,C:\Users\Admin\Documents\mmaproject\f1_2026_authenticated\races\2026_03_japanese_grand_prix\2026_japanese_grand_prix_next_lap_ml.csv,C:\Users\Admin\Documents\mmaproject\f1_2026_authenticated\races\2026_03_japanese_grand_prix
+2026,4,Miami Grand Prix,success,384,verified complete export,C:\Users\Admin\Documents\mmaproject\f1_2026_authenticated\races\2026_04_miami_grand_prix\2026_miami_grand_prix_next_lap_ml.csv,C:\Users\Admin\Documents\mmaproject\f1_2026_authenticated\races\2026_04_miami_grand_prix
+2026,6,Monaco Grand Prix,failed,0,extractor exit 1; manifest status is not complete,,C:\Users\Admin\Documents\mmaproject\f1_2026_authenticated\races\2026_06_monaco_grand_prix
+2026,9,British Grand Prix,success,374,verified complete export,C:\Users\Admin\Documents\mmaproject\f1_2026_authenticated\races\2026_09_british_grand_prix\2026_british_grand_prix_next_lap_ml.csv,C:\Users\Admin\Documents\mmaproject\f1_2026_authenticated\races\2026_09_british_grand_prix
+2026,10,Belgian Grand Prix,failed,0,extractor exit 1; manifest status is not complete,,C:\Users\Admin\Documents\mmaproject\f1_2026_authenticated\races\2026_10_belgian_grand_prix
+2026,17,Singapore Grand Prix,success,510,verified complete export,C:\Users\Admin\Documents\mmaproject\f1_2026_authenticated\races\2026_17_singapore_grand_prix\2026_singapore_grand_prix_next_lap_ml.csv,C:\Users\Admin\Documents\mmaproject\f1_2026_authenticated\races\2026_17_singapore_grand_prix

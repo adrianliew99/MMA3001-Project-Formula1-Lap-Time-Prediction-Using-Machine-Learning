@@ -1,12 +1,16 @@
-# MMA3001-Project-Formula1-Lap-Time-Prediction-Using-Machine-Learning
+# MMA3001-Project-Formula1-Lap-Time-Prediction-Using-a-1-Dimensional-CNN
 Can the lap time and sector trend, recent race history, tyre age and strategy predict the next lap time, how accurate it can be estimated
 
 
 ## About this project
-This repositories records the development of individual project for Monash University School of Engineering study unit MMA3001: Numerical Methods and Machine Learning. It will bring together the project explanation, data preparation and process, computer code, evaluation, further improvement and discussion & findings.
+This repositories records the development of individual project for Monash University School of Engineering study unit MMA3001: Numerical Methods and Machine Learning. It will bring together the project explanation, data preparation and process, computer code, evaluation, further improvement and discussion & findings. 
 
 ## Project Description
+Formula 1 lap times depend on vehicle speed, throttle and braking behaviour, tyre conditions, track temperature and race circumstances. This project investigates whether machine-learning regression models can predict a driver's next lap time using information available at the end of the previous completed lap.
+The primary deliverable is a reproducible comparison of simple and advanced prediction methods. A potential second stage will use lap-pace and tyre-age estimates to compare hypothetical pit-stop strategies. Race winner and DNF probability models are possible future extensions, not current outputs.
+
 ### Engineering Problem
+Can historical Formula 1 lap timing, telemetry and racing conditions improve next-lap time predictions over simple baselines, and can these predictions inform tyre-strategy analysis?
 
 ### Input and Output
 *Input*: Recent race finished position, recent lap time, tyre age and selection
@@ -14,11 +18,193 @@ This repositories records the development of individual project for Monash Unive
 *Validation*: Comparison with labelled assessment and how other factor influence
 
 
-## Project Phase
+### Methodology
 
+**Export the race data**
+
+Preview the larger selection first:
+
+```bash
+python -m dataset.fastf1_export_multi_gp --years 2022 2023 2024 2025 --events --drivers --max-sessions 100 --output ./f1_dataset_new --dry-run
+```
+
+Then run the export:
+
+```bash
+python -m dataset.fastf1_export_multi_gp --years 2022 2023 2024 2025 --events --drivers --max-sessions 100 --output ./f1_dataset_new
+```
+
+**What each option means**
+
+| Option | Meaning |
+|---|---|
+| `--years 2022 2023 2024 2025` | Seasons to retrieve; default: 2024 |
+| `--events Bahrain Monaco Japan` | Match event names, countries or locations; quote names containing spaces |
+| `--events` | All races in the selected seasons, subject to the race/session limits |
+| `--drivers VER HAM` | Only the selected three-letter driver codes |
+| `--drivers` | All drivers |
+| `--max-sessions 100` | Maximum total selected race sessions; default: 3. The script stops before extraction if the selection exceeds it |
+| `--max-races-per-year 30` | Maximum selected races retained per season; default: 30 |
+| `--output ./f1_dataset_new` | Destination for exports; script default: `f1_multi_export_v2/` |
+| `--cache-dir ./f1_export/fastf1_cache` | Location for reusable FastF1 cached data; this is also the default |
+| `--dry-run` | Resolve and display the selection without exporting race data |
+| `--offline` | Ask the child exporter to use cached data; complete required cache data must already exist |
+| `--overwrite` | Permit the exporter to replace its existing per-race output files |
+
+**Files produced**
+
+| Output | Purpose |
+|---|---|
+| `races/` | A separate folder for each race, containing lap tables, weather, race results, an example telemetry export and a completion record |
+| `combined_next_lap_ml.csv` | Combined prediction examples from verified successful or reused races |
+| `combined_all_laps.csv` | Combined all-lap tables where available |
+| `export_summary.csv` | Status, usable row count and reason for each requested race |
+| `batch_manifest.json` | Overall completion status, selection and export records |
+
+#### Step 2 — Check and prepare the data
+
+##### Dataset Description
+Data exported: All Drivers at all circuits for Year 2022, 2023, 2024 & 2025\
+The retrieved data is exported into .csv dataset format\
+**Dataset type:** Historical Formula 1 lap timing and session data
+
+##### Extracted Features
+
+| Category | Features | Description |
+|---|---|---|
+| Driver & Team | `Driver`, `DriverNumber`, `Team`, `Position` | Driver identification, team affiliation, and recorded position |
+| Lap Information | `LapNumber`, `LapTime`, `LapTimeSeconds`, `Time`, `LapStartTime`, `LapStartDate` | Lap sequence, lap duration, and timing information |
+| Sector Timing | `Sector1Time`, `Sector2Time`, `Sector3Time`, `Sector1SessionTime`, `Sector2SessionTime`, `Sector3SessionTime` | Individual sector durations and corresponding session timestamps |
+| Speed Measurements | `SpeedI1`, `SpeedI2`, `SpeedFL`, `SpeedST` | Recorded speeds at intermediate points, finish line, and speed trap (km/h) |
+| Tyre & Stint | `Compound`, `TyreLife`, `FreshTyre`, `Stint` | Tyre compound, tyre age, tyre condition, and stint number |
+| Pit Stop Information | `PitInTime`, `PitOutTime` | Session timestamps associated with pit entry and exit |
+| Race & Track Conditions | `TrackStatus`, `IsPersonalBest` | Track status codes and personal-best lap indicator |
+| Data Quality | `IsAccurate`, `Deleted`, `DeletedReason`, `FastF1Generated` | Flags describing lap accuracy, deletion status, and generated records |
+| Session Metadata | `SessionID`, `Year`, `Event` | Session identification, season, and Grand Prix event |
+
+The workflow checks the expected columns, duplicate records, lap numbering, unrealistic values and the arithmetic connecting previous and next lap times. It prepares consecutive clean-lap pairs and records exclusions.
+
+Missing input values are handled by preprocessing fitted on the training data. This prevents the preparation stage from learning from the later evaluation seasons.
+
+There is an important boundary: the notebook checks the exported tables, but those checks alone cannot prove that every upstream timestamp or clean-lap flag is correct.
+
+#### Step 3 — Explore patterns
+
+Graphs and summaries help inspect the data before interpreting model results. This is called **exploratory data analysis**: looking at what the dataset contains and where problems or patterns may exist.
+
+#### Step 4 — Compare prediction methods
+
+| Method | How it works |
+|---|---|
+| **Persistence** | Uses the previous lap time as the next prediction |
+| **Linear Regression** | Learns a weighted mathematical relationship between inputs and lap-time change |
+| **Decision Tree** | Learns a sequence of branching rules to make a prediction |
+| **Random Forest** | Combines predictions from many decision trees |
+
+The trained models predict the **change** in time rather than the entire lap duration:
+
+**Predicted next lap = previous lap time + predicted change**
+
+For example, a previous lap of **90.0 s** and a predicted change of **+0.2 s** produce a prediction of **90.2 s**. Persistence predicts a change of zero.
+
+The project also compares models using race-context inputs with models that receive additional previous-lap telemetry. This checks whether the extra measurements improve predictions.
+
+#### Step 5 — Choose a model and test it on later data
+
+The seasons have separate jobs:
+
+| Seasons | Role | Think of it as… |
+|---|---|---|
+| **2022–2023** | Training: fit the models | Studying worked examples |
+| **2024** | Validation: compare settings and select a method | Taking a practice exam |
+| **2025** | Independent holdout: evaluate the selected method | Taking the final exam |
+
+The method with the lowest **2024 validation MAE** is selected. The 2025 results are then used for final evaluation and descriptive analysis, rather than further tuning.
+
+Keeping seasons in time order is more realistic than randomly mixing nearby laps into training and testing. Using future information to help an earlier prediction is called **data leakage**; the workflow includes safeguards against it.
+
+#### Step 6 — Investigate errors and computational cost
+
+The notebook examines errors by circuit, driver, tyre compound, tyre age and race stage. It also compares recorded training and prediction times, sensitivity and robustness.
+
+An additional experiment removes four selected events from training and evaluates their 2024 data. This asks how the methods behave when an event category was absent during training.
+
+## Result & Discussion
+
+The selected persistence method achieved these saved 2025 holdout results:
+
+| Measure | Result | What it tells us |
+|---|---:|---|
+| Evaluated lap pairs | **20,662** | Number of predictions checked |
+| MAE | **0.3862 s** | Average size of the error, ignoring its direction |
+| RMSE | **0.6798 s** | An error measure that gives large mistakes more weight |
+| Mean signed error | **−0.0292 s** | Actual minus predicted time; negative means predictions were slightly too slow on average |
+| Next-lap-time R² | **0.9958** | How well predictions match variation in absolute lap durations |
+
+**R² = 0.9958 does not mean “99.58% of predictions are correct.”** Different circuits have very different typical lap times, which helps make this pooled score high. For the much smaller lap-to-lap *changes*, the reported R² is approximately **−0.00185**, showing that the high absolute-time score does not imply strong prediction of pace changes.
+
+On 2024 validation data, persistence achieved **0.4645 s MAE**, compared with **0.4696 s** for the closest evaluated alternative, a telemetry-enhanced Decision Tree. The tree had a lower RMSE, illustrating that different metrics can favour different trade-offs. MAE remained the declared selection rule.
+
+Further analysis found that:
+
+- Errors varied between events; Australia, Britain and Monaco were among the more difficult 2025 events.
+- Intermediate-tyre observations had larger average errors than the reported dry-tyre groups. This association does not prove that the tyre itself caused the difference.
+- Twelve predictions with errors greater than 5 seconds contributed **16.49% of total squared error**. These observations were retained in the overall results.
+- Persistence also had the lowest MAE in the four-event exploratory unseen-circuit experiment: **0.6093 s**, across **3,918 pairs**.
+
+## Project Phase
+Phase 1: Define engineering problem, project objectives and scope
+Phase 2: Dataset export and project framework
+Phase 3: Result, analysis and Improvement
 
 ## Version
-Current version: v1.0
+Current version: v3.0
+
+## Data Source
+Primary Source is obtained through [FastF1]https://github.com/theOehrly/Fast-F1, an open-source Python providing access to previous Formula 1 racing data
+
+
+**References:**
+- [FastF1 GitHub Repository](https://github.com/theOehrly/Fast-F1)
+- [FastF1 Official Documentation](https://docs.fastf1.dev/)
+
+FastF1 is used to retrieve racing data. The original timing data is not owned by this project. Any additional preprocessing, feature engineering, and machine learning implementation will be documented separately.
+
+## How to Run It
+
+Python 3.12 is recommended. A **virtual environment** keeps this project's installed packages separate from other projects on your computer.
+
+Download or clone the repository, select `v2.2`, and open a terminal in the project folder:
+
+```bash
+git clone --branch v2.2 https://github.com/adrianliew99/MMA3001-Project-Formula1-Lap-Time-Prediction-Using-Machine-Learning.git
+cd MMA3001-Project-Formula1-Lap-Time-Prediction-Using-Machine-Learning
+python -m venv .venv
+```
+
+Activate the environment in **Windows PowerShell**:
+
+```powershell
+.venv\Scripts\Activate.ps1
+```
+
+Or on **macOS/Linux**:
+
+```bash
+source .venv/bin/activate
+```
+
+Install the packages and open JupyterLab:
+
+```bash
+python -m pip install -r requirements.txt
+python -m jupyterlab
+```
+
+Open `MMA3001_F1_Next_Lap_Prediction.ipynb`, select the environment's Python kernel and read its configuration before running cells from top to bottom. The notebook uses saved historical exports; downloading new races is a separate operation that requires network access and available source data.
+
+The 2025 evaluation is already reported. Keep its saved outputs when reviewing the project; do not repeatedly use that season to choose better settings and still describe it as an untouched test.
+
 
 ### AI acknowledgement
-LLMs model (Chatgpt 6 Astra, Cursor Pro, Google Gemini3 Plus) was used in the project development, suggesting evaluation 
+LLMs model (Chatgpt 6 Sol, Cursor Pro, Google Gemini3 Plus) was used in the project development, suggesting evaluation, error troubleshooting

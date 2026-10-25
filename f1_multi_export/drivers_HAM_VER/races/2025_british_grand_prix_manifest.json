@@ -1,0 +1,16 @@
+{
+  "status": "failed",
+  "request": {
+    "year": 2025,
+    "event": "British Grand Prix",
+    "session": "R",
+    "drivers": [
+      "HAM",
+      "VER"
+    ]
+  },
+  "started_utc": "2026-10-12T12:11:28.426388+00:00",
+  "source_mode": "provider_with_cache",
+  "failed_utc": "2026-10-12T12:11:56.432067+00:00",
+  "error": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Admin\\\\Documents\\\\mmaproject\\\\dataset\\\\fastf1_export_dataset.py'"
+}

@@ -1,0 +1,16 @@
+Copyright (c) 2026 the MMA3001 F1 project authors.
+All rights reserved.
+
+No general license is granted to use, copy, modify, distribute, sublicense,
+or sell the original source code, notebooks, or documentation in this
+repository. Such uses require prior written permission from the relevant
+copyright holder, except where permitted by applicable law or separately
+agreed in writing. Access to this repository does not itself grant a license.
+
+Third-party libraries, tools, and racing data are excluded from this notice.
+Their respective owners retain their rights and their own terms apply.
+In particular, this notice does not claim ownership of Formula 1 timing,
+telemetry, or other data obtained through FastF1.
+
+The original project materials are provided "as is", without warranties of
+any kind, to the extent permitted by applicable law.
